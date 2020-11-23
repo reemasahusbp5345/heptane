@@ -17,6 +17,7 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
 const AvatarBox = styled.div`
   border: 1px solid red;
   margin-top: 10px;
