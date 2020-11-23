@@ -1,11 +1,10 @@
 import './App.css';
-import { Logo } from './Components/Logo'
+import Routes from './Component/Routes/Routes';
 
 function App() {
   return (
     <div className="App">
-      Hello world test
-      
+     <Routes/>
     </div>
   );
 }
