@@ -1,11 +1,10 @@
 import './App.css';
-import { Search } from './Components/Search'
+import Routes from './Component/Routes/Routes';
 
 function App() {
   return (
     <div className="App">
-      Hello world test
-      <Search placeholder="Search Tumblr"/>
+     <Routes/>
     </div>
   );
 }
