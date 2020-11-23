@@ -14,22 +14,27 @@ import {
 import { Modal, Drawer } from "antd";
 import { Logo } from "../../Components/Logo";
 import { User } from "../../Components/User";
+import Search from "antd/lib/input/Search";
 
 const Wrapper = styled.div`
   position: relative;
   height: 50px;
-  background-color: grey;
+  background-color: #1a237e;
   color: white;
   display: flex;
 `;
 const WrraperItem = styled.div`
   flex: 1;
-  margin: 2px;
+  
   font-size: 25px;
   color: white;
 `;
 const SearchItem = styled.div`
-  flex: 10;
+  flex: 9;
+  margin: 10px;
+`;
+const LogoItem = styled.div`
+  margin: auto 20px;
 `;
 
 class Navbar extends React.Component {
@@ -38,7 +43,6 @@ class Navbar extends React.Component {
     this.state = {
       modal1Visible: false,
       modal2Visible: false,
-      
     };
   }
 
@@ -49,14 +53,17 @@ class Navbar extends React.Component {
   setModal2Visible(modal2Visible) {
     this.setState({ modal2Visible });
   }
- 
+
   render() {
-  
     return (
       <div>
         <Wrapper>
-          <SearchItem>
+          <LogoItem>
             <Logo />
+          </LogoItem>
+
+          <SearchItem>
+            <Search />
           </SearchItem>
           <WrraperItem>
             <Link to={"/dashboard"} style={{ color: "white" }}>
