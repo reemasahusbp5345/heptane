@@ -1,11 +1,11 @@
 import './App.css';
-import { Logo } from './Components/Logo'
+import { Search } from './Components/Search'
 
 function App() {
   return (
     <div className="App">
       Hello world test
-      
+      <Search placeholder="Search Tumblr"/>
     </div>
   );
 }
