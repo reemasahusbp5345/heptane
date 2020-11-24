@@ -1,17 +1,11 @@
-// import { Logo } from './Component/Logo'
-// import { Explore } from "./Pages/Explore/Explore";
-// import { HeadCard } from "./Component/HeadCard";
-// import { RecommendedBlogs } from "./Component/RecommendedBlogs";
-// import { Radar } from "./Component/Radar";
-// import { Sponsored } from "./Component/Sponsored";
 import "./App.css";
 import Routes from "./Component/Routes/Routes";
+// import { Explore } from "./Pages/Explore/Explore";
 
 function App() {
   return (
     <div className="App">
-      <Routes />
-      {/* <Explore /> */}
+      <Routes />  
     </div>
   );
 }

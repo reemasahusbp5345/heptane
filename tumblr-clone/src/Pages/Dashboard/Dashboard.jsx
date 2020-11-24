@@ -13,14 +13,9 @@ import { AppContextProvider } from "./../../Context/AppContext";
 
 export const Dashboard = () => {
   const { data, isLoading } = this.context;
-  console.log(data[0]);
+  // console.log(data[0]);
   return (
     <div>
-      {/* <div>
-        {data?.map((item) => (
-          <div>{item.username}</div>
-        ))}
-      </div> */}
       <Layout>
         <Content>
           <HeadCard />
