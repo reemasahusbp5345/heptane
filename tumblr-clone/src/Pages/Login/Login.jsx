@@ -54,10 +54,13 @@ const LandingWrap = styled.div`
 
 export class Login extends Component {
     render() {
-        const { handleSubmit, handleChange, email, password } = this.context
-    
+        const { handleSubmit, handleChange, email, 
+            password, currentUser, redirectToLogin } = this.context
         return (
-            <LandingWrap>
+            <div>
+
+            {/* Load Login if currentUser is not false or redirect to login */}
+            {!currentUser ? <LandingWrap>
                 <HomeNav login={false} signup={true} />
                 <div className="mid">
                     <img src={process.env.PUBLIC_URL + '/tumblr.png'} alt=""/>
@@ -70,7 +73,9 @@ export class Login extends Component {
                 <div className="bottom">
                     <FooterLinks />
                 </div>
-            </LandingWrap>
+            </LandingWrap> : redirectToLogin(this.props.history)}
+            </div>
+
         )
     }
 }
