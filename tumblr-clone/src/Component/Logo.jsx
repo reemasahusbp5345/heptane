@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const LogoWrap = styled.div`
     & img{
-        width: 35px;
+        width: 30px;
         height: 60px;
     }
 

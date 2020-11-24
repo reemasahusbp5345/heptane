@@ -2,22 +2,25 @@ import React from 'react'
 import styled from 'styled-components'
 
 const SearchInput = styled.div`
-    max-width:480px;
+    width:480px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background-color:#fff;
     border-radius:3px;
+    height:50px;
+    background:#fff;
+
     
     
     & svg{
-        padding:0 5px;
+        margin:0 10px;
+
     }
     
     & input{
         width:100%;
         border-radius:3px;
-        height:30px;
+        height:40px;
         border:none;
         color: #444;
         font-weight:bold;
