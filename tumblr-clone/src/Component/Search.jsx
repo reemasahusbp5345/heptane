@@ -15,7 +15,6 @@ const SearchInput = styled.div`
     
     & svg{
         margin:0 10px;
-
     }
     
     & input{
