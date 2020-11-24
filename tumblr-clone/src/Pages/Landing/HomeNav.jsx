@@ -55,8 +55,8 @@ export const HomeNav = props => {
                 <Search type="text" placeholder="Search Tumblr" /> 
             </div>
             <div className="right">
-                { props.login && <SmallButtons color="#fff" bgColor="#000" label="Log in" />}
-                { props.signup && <SmallButtons color="#222" bgColor="#fff" label="Sign up" />}
+                { props.login && <SmallButtons path="/login" color="#fff" bgColor="#000" label="Log in" />}
+                { props.signup && <SmallButtons path="/signup" color="#222" bgColor="#fff" label="Sign up" />}
             </div>
         </NavWrap>
     )
