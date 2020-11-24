@@ -8,7 +8,7 @@ import { PostCard } from "../../Component/PostCard";
 import {RecommendedBlogs} from "../../Component/RecommendedBlogs"
 import {Radar} from "../../Component/Radar"
 
-const { Header, Sider, Content } = Layout;
+const {Sider, Content } = Layout;
 
 export const Dashboard = () => {
   return (

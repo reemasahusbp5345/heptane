@@ -8,7 +8,7 @@ import {
   MailOutlined,
   SmileOutlined,
   ThunderboltOutlined,
-  UserOutlined,
+  
   EditOutlined,
 } from "@ant-design/icons";
 import { Modal, Drawer } from "antd";
