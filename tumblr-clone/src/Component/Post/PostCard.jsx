@@ -110,7 +110,12 @@ const PostCard = () => {
         <PostBoxHeader>
           <div>
             <div>username</div>
-            <a href="https://www.gooogle.com">Follow</a>
+            <a
+              href="https://www.gooogle.com"
+              style={{ textDecoration: "none" }}
+            >
+              Follow
+            </a>
           </div>
           <div>
             <Icon path={mdiDotsHorizontal} title="share" size={1} />
@@ -120,7 +125,9 @@ const PostCard = () => {
           <div>
             <img src="https://via.placeholder.com/30" alt="usernameAvatar" />
             <div>username</div>
-            <a href="https://www.google.com">Follow</a>
+            <a href="https://www.google.com" style={{ textDecoration: "none" }}>
+              Follow
+            </a>
           </div>
           <div style={{ width: "40px" }}>
             <img
