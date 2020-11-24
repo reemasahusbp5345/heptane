@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./index.css";
 import { Layout } from "antd";
-import { HeadCard } from "../../Components/HeadCard";
-import { PostCard } from "../../Components/PostCard";
-import {RecommendedBlogs} from "../../Components/RecommendedBlogs"
-import {Radar} from "../../Components/Radar"
+import { HeadCard } from "../../Component/HeadCard";
+import { PostCard } from "../../Component/PostCard";
+import {RecommendedBlogs} from "../../Component/RecommendedBlogs"
+import {Radar} from "../../Component/Radar"
 
-const { Header, Sider, Content } = Layout;
+const {Sider, Content } = Layout;
 
 export const Dashboard = () => {
   return (

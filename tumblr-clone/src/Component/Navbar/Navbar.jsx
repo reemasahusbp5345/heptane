@@ -8,12 +8,12 @@ import {
   MailOutlined,
   SmileOutlined,
   ThunderboltOutlined,
-  UserOutlined,
+  
   EditOutlined,
 } from "@ant-design/icons";
 import { Modal, Drawer } from "antd";
-import { Logo } from "../../Components/Logo";
-import { User } from "../../Components/User";
+import { Logo } from "../../Component/Logo";
+import { User } from "../../Component/User";
 import Search from "antd/lib/input/Search";
 
 const Wrapper = styled.div`
