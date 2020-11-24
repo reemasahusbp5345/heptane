@@ -48,20 +48,25 @@ export class AppContextProvider extends Component {
             email:"",
             password:"",
             isPageLoading: false,
-            data:[],
-            currentUser:""
+            data:[], //
+            currentUser:false 
 
         }
+
+        //binding
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.redirectToLogin = this.redirectToLogin.bind(this)
     }
 
+    // handling changes inside inputs
     handleChange(e){
         this.setState({
             [e.target.name] : e.target.value
         })
     }
 
+    // handling onSubmit logic of form
     async handleSubmit(e){
         e.preventDefault()
         const {data} = this.state
@@ -74,7 +79,9 @@ export class AppContextProvider extends Component {
         }))
         .catch(err => Console.log(err))
 
-        let user = data.find( user => user.email === this.state.email )
+        // checking if email is present in database 
+        // if it exists then we will check if pasword is corect 
+        let user = data.find( user => user.email === this.state.email && user.email === this.state.password )
         
         if( user !== undefined ){
             this.setState({
@@ -83,23 +90,29 @@ export class AppContextProvider extends Component {
         }
         else{
             this.setState({
-                currentUser: null
+                currentUser: false
             })
         }
+    }
+
+    // function to redirect to dashboard if logged in already
+    redirectToLogin(history){
+        history.push("/dashboard")
     }
 
    
     
     render() {
-        const { isAuth, email, password } = this.state
-        const { handleChange, handleSubmit } = this
+        const { isAuth, email, password, currentUser } = this.state
+        const { handleChange, handleSubmit, redirectToLogin } = this
         const value ={
             isAuth,
             handleChange,
             handleSubmit,
             email,
-            password
- 
+            password,
+            currentUser,
+            redirectToLogin
         }
         return (
             <AppContext.Provider value={value}>
