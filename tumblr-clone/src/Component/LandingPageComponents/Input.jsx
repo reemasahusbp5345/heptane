@@ -1,25 +1,30 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
-
-export const Input = props => {
-    const { color="#222", bgColor="#fff",  type="text", placeholder } = props
-    const InputWrap = styled.div`
+        const InputWrap = styled.div`
         & input{
-            width:230px;
+            width:300px;
             height:45px;
             border: none;
             outline:none;
-            background-color: ${bgColor};
-            color: ${color};
-            font-size:1rem;
-            font-weight:bold;
+            background-color: white;
+            color: #444;
+            font-size:0.9rem;
+            font-weight:500;
+            font-style:italic;
             letter-spacing:0.25px;
         }
-    `
-    return (
-        <InputWrap>
-            <input placeholder={placeholder} type={type}/>
-        </InputWrap>
-    )
+        `
+export class Input extends Component {
+    render() {
+
+        const { type="text", placeholder, value, handleChange } = this.props
+
+
+        return (
+            <InputWrap>
+                <input name={type} value={value} onChange={ e => handleChange(e) } placeholder={placeholder} type={type}/>
+            </InputWrap>
+        )
+    }
 }
