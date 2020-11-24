@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const CardWrapper = styled.div`
-  border: 1px solid red;
   height: 50px;
   width: 250px;
   display: flex;
   flex-direction: row;
   margin: 4px;
+  color: white;
 
   & img {
     margin-top: 2px;
@@ -38,7 +38,7 @@ class TrendingBlogs extends React.Component {
   render() {
     return (
       <div>
-        <h3 style={{ marginLeft: "4px" }}>Trending blogs</h3>
+        <h3 style={{ marginLeft: "4px", color: "white" }}>Trending blogs</h3>
         <hr style={{ width: "255px" }} />
         <BlogCard />
         <BlogCard />

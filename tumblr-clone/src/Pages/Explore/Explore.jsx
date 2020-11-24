@@ -10,6 +10,7 @@ const RecommendBar = styled.div`
   font-size: 15px;
   margin-left: 15%;
   margin-top: 2px;
+  color: white;
 
   & div {
     display: flex;
@@ -22,7 +23,7 @@ const RecommendBar = styled.div`
 
 export const Explore = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: "#001935" }}>
       <RecommendBar>
         <div>Recommended for you</div>
         <div>

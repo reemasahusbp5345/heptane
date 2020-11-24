@@ -7,29 +7,32 @@ import { HeadCard } from "../../Component/HeadCard";
 import { PostCard } from "../../Component/PostCard";
 import { RecommendedBlogs } from "../../Component/RecommendedBlogs";
 import { Radar } from "../../Component/Radar";
-import { AppContext } from "../../Context/AppContext";
+// import { AppContext } from "../../Context/AppContext";
 const { Header, Sider, Content } = Layout;
-import { AppContextProvider } from "./../../Context/AppContext";
+import { AppContext } from "../../Context/AppContext";
+// import App from "../../App";
 
-export const Dashboard = () => {
-  const { data, isLoading } = this.context;
-  // console.log(data[0]);
-  return (
-    <div>
-      <Layout>
-        <Content>
-          <HeadCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-        </Content>
-        <Sider>
-          <RecommendedBlogs />
-          <Radar />
-        </Sider>
-      </Layout>
-    </div>
-  );
-};
+export class Dashboard extends React.Component {
+  render() {
+    // const { data, isLoading } = this.context;
+    // console.log(data[0].username);
+    return (
+      <div>
+        <Layout style={{ display: "flex", flexDirection: "row" }}>
+          <Content>
+            <HeadCard />
+            <PostCard />
+            <PostCard />
+            <PostCard />
+          </Content>
+          <Sider>
+            <RecommendedBlogs />
+            <Radar />
+          </Sider>
+        </Layout>
+      </div>
+    );
+  }
+}
 
-Dashboard.contextType = AppContextProvider;
+Dashboard.contextType = AppContext;

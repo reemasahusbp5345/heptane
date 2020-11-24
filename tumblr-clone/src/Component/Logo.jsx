@@ -5,6 +5,7 @@ const LogoWrap = styled.div`
   & img {
     width: 35px;
     height: 60px;
+    color: white;
   }
 
   & img:hover {

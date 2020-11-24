@@ -8,7 +8,7 @@ export class AppContextProvider extends Component {
     super(props);
     this.state = {
       data: [],
-      isAuth: false,
+      isAuth: true,
       isLoading: true,
       error: false,
     };

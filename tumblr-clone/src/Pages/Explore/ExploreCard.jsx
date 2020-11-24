@@ -5,7 +5,9 @@ import Icon from "@mdi/react";
 import { mdiHeartOutline, mdiReplyOutline, mdiDotsHorizontal } from "@mdi/js";
 
 const PostBox = styled.div`
-  border: 1px solid red;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 5px;
   margin-top: 10px;
   // height: auto;
   width: 250px;

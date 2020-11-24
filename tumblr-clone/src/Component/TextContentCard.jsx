@@ -7,10 +7,12 @@ import {
   mdiMessageReply,
   mdiShareVariantOutline,
   mdiDotsHorizontal,
+  mdiTrashCanOutline,
+  mdiPencilOutline,
 } from "@mdi/js";
 
 const CardWrapper = styled.div`
-  height: 600px;
+  height: auto;
   width: 500px;
   margin-left: 30%;
   display: flex;
@@ -35,7 +37,7 @@ const PostBox = styled.div`
   color: black;
   border-radius: 5px;
   margin-top: 10px;
-  height: 590px;
+  height: auto;
   width: 450px;
   margin: 4px;
 `;
@@ -61,7 +63,8 @@ const PostBoxHeader = styled.div`
   }
 `;
 const PostBoxContent = styled.div`
-  height: 485px;
+  //   border: 1px solid red;
+  height: auto;
   display: flex;
   flex-direction: column;
   padding: 5px 5px;
@@ -86,7 +89,7 @@ const PostBoxFooter = styled.div`
   bottom: 0px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
 
   & div {
     margin: 7px;
@@ -97,7 +100,7 @@ const PostBoxFooter = styled.div`
   }
 `;
 
-const PostCard = () => {
+const TextContentCard = () => {
   return (
     <CardWrapper>
       {/* Card Header */}
@@ -110,44 +113,25 @@ const PostCard = () => {
         <PostBoxHeader>
           <div>
             <div>username</div>
-            <a
-              href="https://www.gooogle.com"
-              style={{ textDecoration: "none" }}
-            >
-              Follow
-            </a>
           </div>
           <div>
             <Icon path={mdiDotsHorizontal} title="share" size={1} />
           </div>
         </PostBoxHeader>
         <PostBoxContent>
-          <div>
-            <img src="https://via.placeholder.com/30" alt="usernameAvatar" />
-            <div>username</div>
-            <a href="https://www.google.com" style={{ textDecoration: "none" }}>
-              Follow
-            </a>
-          </div>
-          <div style={{ width: "40px" }}>
-            <img
-              src="https://via.placeholder.com/400x300"
-              alt="usernameAvatar"
-            />
-          </div>
-          <div>Content</div>
-          <div>Source</div>
-          <div style={{ color: "green", fontWeight: "600" }}>Recommended</div>
+          <div style={{ fontSize: "30px" }}>Title</div>
+          <div style={{ fontSize: "20px" }}>Content</div>
         </PostBoxContent>
 
         {/* Card Footer */}
         <PostBoxFooter>
-          <div>3473 notes</div>
           <div>
-            <Icon path={mdiShareVariantOutline} title="share" size={1} />
-            <Icon path={mdiMessageReply} title="reply" size={1} />
-            <Icon path={mdiReplyOutline} title="reblog" size={1} />
-            <Icon path={mdiHeartOutline} title="heart" size={1} />
+            <Icon path={mdiShareVariantOutline} title="share" size={2} />
+            <Icon path={mdiMessageReply} title="reply" size={2} />
+            <Icon path={mdiReplyOutline} title="reblog" size={2} />
+            <Icon path={mdiHeartOutline} title="heart" size={2} />
+            <Icon path={mdiTrashCanOutline} title="heart" size={2} />
+            <Icon path={mdiPencilOutline} title="heart" size={2} />
           </div>
         </PostBoxFooter>
       </PostBox>
@@ -155,4 +139,4 @@ const PostCard = () => {
   );
 };
 
-export { PostCard };
+export { TextContentCard };

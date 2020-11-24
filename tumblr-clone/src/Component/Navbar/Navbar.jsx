@@ -8,7 +8,6 @@ import {
   MailOutlined,
   SmileOutlined,
   ThunderboltOutlined,
-  
   EditOutlined,
 } from "@ant-design/icons";
 import { Modal, Drawer } from "antd";
@@ -19,7 +18,7 @@ import Search from "antd/lib/input/Search";
 const Wrapper = styled.div`
   position: relative;
   height: 50px;
-  background-color: #1a237e;
+  background-color: #001935;
   color: white;
   display: flex;
 `;

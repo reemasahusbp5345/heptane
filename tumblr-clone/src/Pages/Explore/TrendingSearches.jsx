@@ -19,7 +19,7 @@ class TrendingSearches extends React.Component {
   render() {
     return (
       <>
-        <h3 style={{ marginLeft: "4px" }}>Trending Searches</h3>
+        <h3 style={{ marginLeft: "4px", color: "white" }}>Trending Searches</h3>
         <hr style={{ width: "255px" }} />
         <div>
           <div style={{ ...flex }}>
