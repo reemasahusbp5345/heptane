@@ -6,7 +6,6 @@ export class PrivateRoute extends React.Component {
     render(){
         const {Component, ...rest} = this.props
         const { currentUser } = this.context
-        console.log(currentUser)
         return !currentUser ? <Redirect to="/login" /> : <Route {...rest} render={ props => <Component {...props} /> } />
     }
 }
