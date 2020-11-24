@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Landing} from './Landing'
-import ScrollableContainer from "react-full-page-scroll";
+ 
 
 export class Home extends Component {
     render() {

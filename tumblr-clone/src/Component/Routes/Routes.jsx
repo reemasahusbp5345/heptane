@@ -14,7 +14,7 @@ export class Routes extends Component {
     const {isAuth} = this.context
     return (
       <div>
-        <Route path="/" render={() => isAuth && <Navbar /> } />
+        <Route path="/" render={() =>   <Navbar /> } />
         <Route path="/dashboard" render={() => <Dashboard/>} />
         <Route path="/trending/explore" render={() => <Explore/>} />
         <Route path="/inbox" render={() => <Inbox/>} />

@@ -13,6 +13,7 @@ import {
 import {Link} from "react-router-dom"
  import {Modal} from "antd"
  import {PhotoPost} from "../Component/PostFolder/PhotoPost"
+import { AppContext } from "../Context/AppContext";
 
 const CardWrapper = styled.div`
   height: 95px;
@@ -59,12 +60,18 @@ class HeadCard extends React.Component{
       modal5Visible: false,
       modal6Visible: false,
       modal7Visible: false,
-     
+     text:""
     };
+    this.handleChange=this.handleChange.bind(this)
   }
 
   setModal1Visible(modal1Visible) {
     this.setState({ modal1Visible });
+    const {addPost}=this.context
+    const {text} = this.state;
+    let payload={text}
+    addPost(payload)
+    console.log(text)
   }
 
   setModal2Visible(modal2Visible) {
@@ -85,8 +92,16 @@ class HeadCard extends React.Component{
   setModal7Visible(modal7Visible) {
     this.setState({ modal7Visible });
   }
-  render(){
 
+  handleChange(e){
+      const {name, value}=e.target
+      this.setState({
+        [name]:value
+      } )
+  }
+  render(){
+        const {text}=this.state
+        
     return (
       <CardWrapper>
         <AvatarBox>
@@ -101,9 +116,10 @@ class HeadCard extends React.Component{
                 style={{ top: 20 }}
                 visible={this.state.modal1Visible}
                 onOk={() => this.setModal1Visible(false)}
+
                 onCancel={() => this.setModal1Visible(false)}
               >
-                
+                <input type="text" placeholder="Your text here" name="text" value={text} onChange={this.handleChange}/>
                 <p>Your Text Here</p>
                 <p>some contents...</p>
               </Modal>
@@ -203,5 +219,7 @@ class HeadCard extends React.Component{
     );
   }
 };
+
+HeadCard.contextType=AppContext
 
 export { HeadCard };
