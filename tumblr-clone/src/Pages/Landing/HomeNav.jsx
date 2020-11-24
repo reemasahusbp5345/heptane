@@ -21,6 +21,20 @@ export const HomeNav = () => {
             margin: 0 10px;
             cursor: pointer;
         }
+
+        .left svg{
+            margin: 0 10px;
+        }
+
+        .left div:last-child{
+            width:480px;
+        }
+
+        & .left input{
+            width: 100%;
+        }
+        
+
         & .right{
             display:flex;
             align-items:center;
