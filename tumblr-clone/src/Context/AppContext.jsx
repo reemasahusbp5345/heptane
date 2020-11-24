@@ -1,4 +1,6 @@
+import { mdiAxisXRotateClockwise } from '@mdi/js'
 import React, { Component } from 'react'
+ 
 import axios from 'axios'
 import { Redirect } from "react-router-dom";
 
@@ -10,6 +12,39 @@ export class AppContextProvider extends Component {
         super(props)
         this.state = {
             isAuth:false,
+ 
+            posting:false,
+            user:[],
+        }
+        this.addPost=this.addPost.bind(this)
+    }
+
+    componentDidMount(){
+        
+        axios.get(`https://tumblr-server.herokuapp.com/users`)
+        .then((res=>{
+               this.setState({
+                   user:[res.data[0]]
+               })
+        }))
+         
+    }
+
+    // addPost(newPost){
+    //     const {post}=this.state;
+    //     this.setState({
+    //         post:[ post,newPost]
+    //     })
+       
+    // }
+
+    render() {
+        const { isAuth,user } = this.state
+        console.log(user)
+        const {addPost}=this
+        const value ={
+            isAuth,addPost,
+ 
             email:"",
             password:"",
             isPageLoading: false,
@@ -32,11 +67,6 @@ export class AppContextProvider extends Component {
         this.setState({
             [e.target.name] : e.target.value
         })
-    }
-    
-    
-    componentDidMount(){
-
     }
 
     // handling onSubmit logic of form
