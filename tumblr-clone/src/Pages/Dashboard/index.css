@@ -1,0 +1,36 @@
+.code-box-demo {
+  text-align: center;
+}
+.ant-layout-header,
+.ant-layout-footer {
+  color: #fff;
+  background: #7dbcea;
+}
+[data-theme="dark"] .ant-layout-header {
+  background: #6aa0c7;
+}
+[data-theme="dark"] .ant-layout-footer {
+  background: #6aa0c7;
+}
+.ant-layout-footer {
+  line-height: 1.5;
+}
+.ant-layout-sider {
+  color: #fff;
+
+  background: #37474f;
+}
+[data-theme="dark"] .ant-layout-sider {
+  background: #3499ec;
+}
+.ant-layout-content {
+  color: #fff;
+
+  background:#37474f;
+}
+[data-theme="dark"] .ant-layout-content {
+  background:#37474f;
+}
+.code-box-demo > .ant-layout + .ant-layout {
+  margin-top: 48px;
+}

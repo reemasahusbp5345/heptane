@@ -12,7 +12,6 @@ function Routes() {
       <Route path="/dashboard" render={() => <Dashboard/>} />
       <Route path="/trending/explore" render={() => <Explore/>} />
       <Route path="/inbox" render={() => <Inbox/>} />
-      
     </div>
   );
 }
