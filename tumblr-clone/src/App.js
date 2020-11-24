@@ -1,9 +1,9 @@
-// import { Logo } from './Components/Logo'
-import { PostCard } from "./Components/PostCard";
-import { HeadCard } from "./Components/HeadCard";
-// import { RecommendedBlogs } from "./Components/RecommendedBlogs";
-// import { Radar } from "./Components/Radar";
-import { Sponsored } from "./Components/Sponsored";
+// import { Logo } from './Component/Logo'
+import { PostCard } from "./Component/PostCard";
+import { HeadCard } from "./Component/HeadCard";
+// import { RecommendedBlogs } from "./Component/RecommendedBlogs";
+// import { Radar } from "./Component/Radar";
+import { Sponsored } from "./Component/Sponsored";
 import "./App.css";
 import Routes from './Component/Routes/Routes';
 
