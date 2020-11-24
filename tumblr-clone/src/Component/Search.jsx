@@ -8,16 +8,20 @@ const SearchInput = styled.div`
     align-items:center;
     background-color:#3f51b5;
     border-radius:3px;
+    height:50px;
+    background:#fff;
+
     
     
     & svg{
-        padding:0 5px;
+        margin:0 10px;
+
     }
     
     & input{
         width:50%;
         border-radius:3px;
-        height:30px;
+        height:40px;
         border:none;
         color: #444;
         font-weight:bold;
