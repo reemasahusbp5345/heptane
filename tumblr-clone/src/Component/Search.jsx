@@ -8,7 +8,7 @@ const SearchInput = styled.div`
     align-items:center;
     background-color:#3f51b5;
     border-radius:3px;
-    height:50px;
+    height:40px;
     background:#fff;
 
     

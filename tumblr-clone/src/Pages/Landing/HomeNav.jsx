@@ -4,12 +4,12 @@ import {Logo} from '../../Component/Logo'
 import {Search} from '../../Component/Search'
 import {SmallButtons} from '../../Component/LandingPageComponents/SmallButtons'
 
-export const HomeNav = () => {
     const NavWrap = styled.nav`
         display:flex;
         align-items:center;
         justify-content:space-between;
         background:transparent;
+        padding-top:10px;
 
         & .left{
             display:flex;
@@ -43,8 +43,11 @@ export const HomeNav = () => {
 
         & .right button:nth-child(1){
             margin: 0 30px 0 10px;
+             
         }
     `
+export const HomeNav = props => {
+    
     return (
         <NavWrap>
             <div className="left">
@@ -52,8 +55,8 @@ export const HomeNav = () => {
                 <Search type="text" placeholder="Search Tumblr" /> 
             </div>
             <div className="right">
-                <SmallButtons color="#fff" bgColor="#000" label="Log in" />
-                <SmallButtons color="#222" bgColor="#fff" label="Sign up" />
+                { props.login && <SmallButtons color="#fff" bgColor="#000" label="Log in" />}
+                { props.signup && <SmallButtons color="#222" bgColor="#fff" label="Sign up" />}
             </div>
         </NavWrap>
     )
