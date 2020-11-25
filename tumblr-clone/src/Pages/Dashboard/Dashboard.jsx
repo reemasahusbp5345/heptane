@@ -11,7 +11,7 @@ import styled from "styled-components";
 import { AppContext } from "../../Context/AppContext";
 const Layout=styled.div`
   display:flex;
-  background:#0d47a1;
+  background:#001935;
 `;
 const Content=styled.div`
   flex:2
