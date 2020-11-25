@@ -6,7 +6,7 @@ import {Button} from '../../Component/LandingPageComponents/Button'
 import {Input} from '../../Component/LandingPageComponents/Input'
 import {AppContext} from '../../Context/AppContext'
 
-const LandingWrap = styled.div`
+const LoginWrap = styled.div`
     height:100vh;
     max-height:100%;
     width:100vw;
@@ -54,23 +54,28 @@ const LandingWrap = styled.div`
 
 export class Login extends Component {
     render() {
-        const { handleSubmit, handleChange, email, password } = this.context
-    
+        const { handleSubmit, handleChange, email, 
+            password, currentUser, redirectTo } = this.context
         return (
-            <LandingWrap>
-                <HomeNav login={false} signup={true} />
+            <div>
+
+            {/* Load Login if currentUser is not false or redirect to login */}
+            {!currentUser ? <LoginWrap>
+                <HomeNav  login={false} signup={true} />
                 <div className="mid">
                     <img src={process.env.PUBLIC_URL + '/tumblr.png'} alt=""/>
                     <form onSubmit={ e => handleSubmit(e)}>
-                        <Input handleChange={  handleChange } value={email} type="email" placeholder="Enter Email" />
-                        <Input handleChange={  handleChange } value={password} type="password" placeholder="Enter Password" />
+                        <Input name="email" handleChange={  handleChange } value={email} type="email" placeholder="Enter Email" />
+                        <Input name="password" handleChange={  handleChange } value={password} type="password" placeholder="Enter Password" />
                         <Button label="Log in" />
                     </form>
                 </div>
                 <div className="bottom">
                     <FooterLinks />
                 </div>
-            </LandingWrap>
+            </LoginWrap> : redirectTo(this.props.history, "/dashboard")}
+            </div>
+
         )
     }
 }
