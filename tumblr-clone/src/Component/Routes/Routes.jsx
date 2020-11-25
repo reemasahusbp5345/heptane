@@ -17,10 +17,10 @@ export class Routes extends Component {
       <>
         <Route path="/" render={() => isAuth && <Navbar />} />
         <Switch>
-          {/* <Route path="/" exact render={(props) => <Home {...props} />} /> */}
-          <PrivateRoute path="/dashboard" exact Component={Dashboard} />
+          <Route path="/" exact render={(props) => <Home {...props} />} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="/trending/explore" render={() => <Explore />} />
-          <PrivateRoute path="/inbox" Component={Inbox} />
+          <PrivateRoute path="/inbox" component={Inbox} />
           <Route
             path="/login"
             render={(props) =>

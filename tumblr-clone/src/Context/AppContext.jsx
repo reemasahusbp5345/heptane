@@ -1,8 +1,5 @@
-import { mdiAxisXRotateClockwise } from "@mdi/js";
 import React, { Component } from "react";
-
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 
 export const AppContext = React.createContext();
 
@@ -16,7 +13,7 @@ export class AppContextProvider extends Component {
       currentUser:false,
       isPageLoading:false,
       posting: false,
-      posts: [],
+      posts: []
     };
     this.addPost = this.addPost.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -108,14 +105,16 @@ export class AppContextProvider extends Component {
       isPageLoading: true,
     });
     await axios
-      .get("https://tumblr-server.herokuapp.com/users")
-      .then((res) => this.saveData(res.data))
-      .catch((err) => console.log(err));
+    .get("https://tumblr-server.herokuapp.com/users")
+    .then((res) => this.saveData(res.data, history))
+    .catch((err) => console.log(err));
+
+    this.setState({
+      isPageLoading: false,
+    });
   }
 
-  saveData(data) {
-    console.log(data);
-
+  saveData(data, history) {
     // checking if email is present in database
     // if it exists then we will check if pasword is corect
     let user = data.find(
@@ -126,17 +125,27 @@ export class AppContextProvider extends Component {
     if (user !== undefined) {
       this.setState({
         currentUser: user.id,
-        isAuth: true,
+        isAuth:true
+      });
+      history.push("/dashboard")
+    }
+    else{
+      this.setState({
+        currentUser: false,
       });
     }
+  
   }
 
   // function to redirect
   redirectTo(history, path) {
     history.push(path);
+    this.setState({
+      isAuth: false
+    })
   }
 
-  async handleSignUp(e, email, username, password, history) {
+  async handleSignUp(e, email, username, password) {
     e.preventDefault();
 
     this.setState({
@@ -146,12 +155,15 @@ export class AppContextProvider extends Component {
     await axios
       .get("https://tumblr-server.herokuapp.com/users")
       .then((res) =>
-        this.checkData(res.data, email, username, password, history)
+        this.checkData(res.data, email, username, password)
       )
       .catch((err) => console.log(err));
+      this.setState({
+        isPageLoading: false,
+      });
   }
 
-  async checkData(data, email, username, password, history) {
+  async checkData(data, email, username, password) {
     // checking if email is present in database
     // if it exists then we will check if username exists
     let user = data.filter(
