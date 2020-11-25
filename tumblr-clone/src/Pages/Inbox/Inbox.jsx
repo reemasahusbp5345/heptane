@@ -1,11 +1,23 @@
-import React from "react"
+import React from "react";
+import { Box } from "./Box";
+import { AllMessages } from "./AllMessages";
+import { Footer } from "./Footer";
 
-export const Inbox = () => {
+const Inbox = () => {
   return (
-      <div>
-
-          <h1>Welcome to Inbox page</h1>
-          
+    <div style={{ backgroundColor: "#001935", textAlign: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        <Box />
+        <AllMessages />
       </div>
-  )
-}
+      <Footer />
+    </div>
+  );
+};
+
+export { Inbox };

@@ -26,10 +26,10 @@
 .ant-layout-content {
   color: #fff;
 
-  background:#37474f;
+  background: #001935;
 }
 [data-theme="dark"] .ant-layout-content {
-  background:#37474f;
+  background: #37474f;
 }
 .code-box-demo > .ant-layout + .ant-layout {
   margin-top: 48px;
