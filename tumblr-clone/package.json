@@ -11,7 +11,6 @@
     "@testing-library/user-event": "^12.2.2",
     "antd": "^4.8.5",
     "axios": "^0.21.0",
-    "gatsby-plugin-smoothscroll": "^1.2.0",
     "mdi-react": "^7.4.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

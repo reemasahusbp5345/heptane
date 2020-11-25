@@ -65,7 +65,7 @@ export class Login extends Component {
     return (
       <div>
         {/* Load Login if currentUser is not false or redirect to login */}
-        {!currentUser ? (
+        {!currentUser ? 
           <LoginWrap>
             <HomeNav login={false} signup={true} />
             <div className="mid">
@@ -91,10 +91,7 @@ export class Login extends Component {
             <div className="bottom">
               <FooterLinks />
             </div>
-          </LoginWrap>
-        ) : (
-          redirectTo(this.props.history, "/dashboard")
-        )}
+          </LoginWrap> : <Redirect to="/dashboard" />}
       </div>
     );
   }

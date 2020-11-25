@@ -78,13 +78,15 @@ export class SignUp extends Component {
         const { handleSignUp, currentUser, redirectTo } = this.context
         const {email, password, username} = this.state
         return (
-                <SignUpWrap>
+            <div>
+                
+                { !currentUser ? <SignUpWrap>
                     <HomeNav/>
                     <div className="mid">
                         <img src={process.env.PUBLIC_URL + '/tumblr.png'} alt=""/>
                         <p>Come for what you love. {'\n'}
                         Stay for what you discover.</p>
-                        <form onSubmit={ e => handleSignUp( e, email, username, password, this.props.history )}>
+                        <form onSubmit={ e => handleSignUp( e, email, username, password )}>
                             <Input handleChange={ e => this.handleChange(e) } value={email} name="email" type="email" placeholder="Enter Email" />
                             <Input handleChange={ e => this.handleChange(e) } value={username} name="username" type="text" placeholder="Enter Username" />
                             <Input handleChange={ e => this.handleChange(e) } value={password} name="password" type="password" placeholder="Enter Password" />
@@ -104,7 +106,8 @@ export class SignUp extends Component {
                     <div className="bottom">
                         <FooterLinks />
                     </div>
-                </SignUpWrap>
+                </SignUpWrap> : <Redirect to="/dashboard" />}
+            </div>
 
         )
     }

@@ -1,8 +1,5 @@
-import { mdiAxisXRotateClockwise } from "@mdi/js";
 import React, { Component } from "react";
-
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 
 export const AppContext = React.createContext();
 
@@ -18,7 +15,7 @@ export class AppContextProvider extends Component {
       posting: false,
       posts: [],
     };
-    // this.addPost = this.addPost.bind(this);
+    this.addPost = this.addPost.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.redirectTo = this.redirectTo.bind(this);
@@ -82,6 +79,11 @@ export class AppContextProvider extends Component {
         isAuth: true,
       });
     }
+    else{
+      this.setState({
+        currentUser: false
+      });
+    }
   }
 
   // function to redirect
@@ -89,7 +91,7 @@ export class AppContextProvider extends Component {
     history.push(path);
   }
 
-  async handleSignUp(e, email, username, password, history) {
+  async handleSignUp(e, email, username, password) {
     e.preventDefault();
 
     this.setState({
@@ -99,12 +101,15 @@ export class AppContextProvider extends Component {
     await axios
       .get("https://tumblr-server.herokuapp.com/users")
       .then((res) =>
-        this.checkData(res.data, email, username, password, history)
+        this.checkData(res.data, email, username, password)
       )
       .catch((err) => console.log(err));
+      this.setState({
+        isPageLoading: false,
+      });
   }
 
-  async checkData(data, email, username, password, history) {
+  async checkData(data, email, username, password) {
     // checking if email is present in database
     // if it exists then we will check if username exists
     let user = data.filter(
@@ -132,23 +137,6 @@ export class AppContextProvider extends Component {
     }
   }
 
-  // render() {
-  //     const { isAuth,user } = this.state
-  //     console.log(user)
-  //     const {addPost}=this
-  //     const value ={
-  //         isAuth,addPost,
-
-  //         email:"",
-  //         password:"",
-  //         isPageLoading: false,
-  //         data:[], //
-  //         currentUser:false
-
-  //     }
-
-  //     //binding
-  // }
   render() {
     const { isAuth, email, password, currentUser, data, post,user } = this.state;
      
