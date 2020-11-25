@@ -14,10 +14,10 @@ const Layout=styled.div`
   background:#001935;
 `;
 const Content=styled.div`
-  flex:2
+  flex:2;
 `;
 const Sider=styled.div`
-  flex:1
+  flex:1;
 `;
 // const {Sider, Content } = Layout;
 export class Dashboard extends React.Component {
@@ -25,13 +25,11 @@ export class Dashboard extends React.Component {
     super(props)
     this.state={
     }
-    this.feedCard=this.feedCard.bind(this)
+     
   }
-  feedCard(){
-  }
+   
   render(){
-    const {user}=this.context
-    console.log(user)
+    
     return (
       <div>
         <Layout>

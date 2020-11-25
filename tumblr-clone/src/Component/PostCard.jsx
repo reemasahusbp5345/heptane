@@ -8,6 +8,7 @@ import {
   mdiShareVariantOutline,
   mdiDotsHorizontal,
 } from "@mdi/js";
+import { AppContext } from "../Context/AppContext";
 
 const CardWrapper = styled.div`
   height: 600px;
@@ -36,7 +37,7 @@ const PostBox = styled.div`
   border-radius: 5px;
   margin-top: 10px;
   height: 590px;
-  width: 450px;
+  width: 500px;
   margin: 4px;
 `;
 const PostBoxHeader = styled.div`
@@ -97,62 +98,73 @@ const PostBoxFooter = styled.div`
   }
 `;
 
-const PostCard = () => {
-  return (
-    <CardWrapper>
-      {/* Card Header */}
-      <AvatarBox>
-        <img src="https://via.placeholder.com/30" alt="avatar" />
-      </AvatarBox>
+class PostCard extends React.Component {
+      constructor(props){
+        super(props)
+        this.state={
 
-      {/* Main Card Content */}
-      <PostBox>
-        <PostBoxHeader>
-          <div>
-            <div>username</div>
-            <a
-              href="https://www.gooogle.com"
-              style={{ textDecoration: "none" }}
-            >
-              Follow
-            </a>
-          </div>
-          <div>
-            <Icon path={mdiDotsHorizontal} title="share" size={1} />
-          </div>
-        </PostBoxHeader>
-        <PostBoxContent>
-          <div>
-            <img src="https://via.placeholder.com/30" alt="usernameAvatar" />
-            <div>username</div>
-            <a href="https://www.google.com" style={{ textDecoration: "none" }}>
-              Follow
-            </a>
-          </div>
-          <div style={{ width: "40px" }}>
-            <img
-              src="https://via.placeholder.com/400x300"
-              alt="usernameAvatar"
-            />
-          </div>
-          <div>Content</div>
-          <div>Source</div>
-          <div style={{ color: "green", fontWeight: "600" }}>Recommended</div>
-        </PostBoxContent>
-
-        {/* Card Footer */}
-        <PostBoxFooter>
-          <div>3473 notes</div>
-          <div>
-            <Icon path={mdiShareVariantOutline} title="share" size={1} />
-            <Icon path={mdiMessageReply} title="reply" size={1} />
-            <Icon path={mdiReplyOutline} title="reblog" size={1} />
-            <Icon path={mdiHeartOutline} title="heart" size={1} />
-          </div>
-        </PostBoxFooter>
-      </PostBox>
-    </CardWrapper>
-  );
+        }
+      }
+  render(){
+    const {posts}=this.context
+    console.log(posts)
+    return (
+      <CardWrapper>
+        {/* Card Header */}
+        <AvatarBox>
+          <img src="https://via.placeholder.com/30" alt="avatar" />
+        </AvatarBox>
+  
+        {/* Main Card Content */}
+        <PostBox>
+          <PostBoxHeader>
+            <div>
+              <div>username</div>
+              <a
+                href="https://www.gooogle.com"
+                style={{ textDecoration: "none" }}
+              >
+                Follow
+              </a>
+            </div>
+            <div>
+              <Icon path={mdiDotsHorizontal} title="share" size={1} />
+            </div>
+          </PostBoxHeader>
+          <PostBoxContent>
+            <div>
+              <img src="https://via.placeholder.com/30" alt="usernameAvatar" />
+              <div>username</div>
+              <a href="https://www.google.com" style={{ textDecoration: "none" }}>
+                Follow
+              </a>
+            </div>
+            <div style={{ width: "40px" }}>
+              <img
+                src="https://via.placeholder.com/400x300"
+                alt="usernameAvatar"
+              />
+            </div>
+            <div>Content</div>
+            <div>Source</div>
+            <div style={{ color: "green", fontWeight: "600" }}>Recommended</div>
+          </PostBoxContent>
+  
+          {/* Card Footer */}
+          <PostBoxFooter>
+            <div>3473 notes</div>
+            <div>
+              <Icon path={mdiShareVariantOutline} title="share" size={1} />
+              <Icon path={mdiMessageReply} title="reply" size={1} />
+              <Icon path={mdiReplyOutline} title="reblog" size={1} />
+              <Icon path={mdiHeartOutline} title="heart" size={1} />
+            </div>
+          </PostBoxFooter>
+        </PostBox>
+      </CardWrapper>
+    );
+  }
 };
+PostCard.contextType=AppContext
 
 export { PostCard };
