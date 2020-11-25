@@ -26,13 +26,12 @@ export class AppContextProvider extends Component {
     });
   }
 
-  // addPost(newPost){
-  //     const {post}=this.state;
-  //     this.setState({
-  //         post:[ post,newPost]
-  //     })
-
-  // }
+  addPost(newPost) {
+    const { post } = this.state;
+    this.setState({
+      post: [post, newPost],
+    });
+  }
 
   render() {
     const { isAuth, user } = this.state;
