@@ -5,48 +5,58 @@ import ReactDOM from "react-dom";
 // import { Layout } from "antd";
 import { HeadCard } from "../../Component/HeadCard";
 import { PostCard } from "../../Component/PostCard";
-import {RecommendedBlogs} from "../../Component/RecommendedBlogs"
-import {Radar} from "../../Component/Radar"
+import { RecommendedBlogs } from "../../Component/RecommendedBlogs";
+import { Radar } from "../../Component/Radar";
 import styled from "styled-components";
 import { AppContext } from "../../Context/AppContext";
-const Layout=styled.div`
-  display:flex;
-  background:#001935;
+import Axios from "axios";
+const Layout = styled.div`
+  display: flex;
+  background: #001935;
 `;
-const Content=styled.div`
-  flex:2
+const Content = styled.div`
+  flex: 2;
 `;
-const Sider=styled.div`
-  flex:1
+const Sider = styled.div`
+  flex: 1;
 `;
 // const {Sider, Content } = Layout;
 export class Dashboard extends React.Component {
-  constructor(props){
-    super(props)
-    this.state={
-    }
-    this.feedCard=this.feedCard.bind(this)
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+    };
+    this.feedCard = this.feedCard.bind(this);
   }
-  feedCard(){
-  }
-  render(){
-    const {user}=this.context
-    console.log(user)
+
+  feedCard() {}
+  render() {
+    const { user, posts } = this.context;
+    console.log(posts);
     return (
       <div>
         <Layout>
-          <Content  >
+          <Content>
             <HeadCard />
+            {posts?.map((item) => (
+              <PostCard
+                id={item.id}
+                postImgUrl={item.content}
+                username={item.post_by}
+                avatarUrl={item.src}
+              />
+            ))}
             <PostCard />
-           <PostCard/>
+            <PostCard />
           </Content>
-          <Sider  >
-            <RecommendedBlogs/>
-            <Radar/>
-            </Sider>
+          <Sider>
+            <RecommendedBlogs />
+            <Radar />
+          </Sider>
         </Layout>
       </div>
     );
   }
-};
-Dashboard.contextType=AppContext
+}
+Dashboard.contextType = AppContext;

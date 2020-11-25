@@ -5,6 +5,7 @@ import { FooterLinks } from "../Landing/FooterLinks";
 import { Button } from "../../Component/LandingPageComponents/Button";
 import { Input } from "../../Component/LandingPageComponents/Input";
 import { AppContext } from "../../Context/AppContext";
+import { Redirect } from "react-router-dom";
 
 const LoginWrap = styled.div`
   height: 100vh;
@@ -93,7 +94,8 @@ export class Login extends Component {
             </div>
           </LoginWrap>
         ) : (
-          redirectTo(this.props.history, "/dashboard")
+          <Redirect />
+          // redirectTo(this.props.history, "/dashboard")
         )}
       </div>
     );

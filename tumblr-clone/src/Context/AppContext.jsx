@@ -11,10 +11,10 @@ export class AppContextProvider extends Component {
     super(props);
     this.state = {
       isAuth: false,
-      email:"",
-      password:"",
-      currentUser:false,
-      isPageLoading:false,
+      email: "",
+      password: "",
+      currentUser: false,
+      isPageLoading: false,
       posting: false,
       posts: [],
     };
@@ -35,12 +35,12 @@ export class AppContextProvider extends Component {
     });
   }
 
-//   addPost(newPost) {
-//     const { post } = this.state;
-//     this.setState({
-//       post: [post, newPost],
-//     });
-//   }
+  //   addPost(newPost) {
+  //     const { post } = this.state;
+  //     this.setState({
+  //       post: [post, newPost],
+  //     });
+  //   }
 
   // handling changes inside inputs
   handleChange(e) {
@@ -150,8 +150,16 @@ export class AppContextProvider extends Component {
   //     //binding
   // }
   render() {
-    const { isAuth, email, password, currentUser, data, post,user } = this.state;
-     
+    const {
+      isAuth,
+      email,
+      password,
+      currentUser,
+      data,
+      posts,
+      user,
+    } = this.state;
+    // console.log(posts);
     const {
       handleChange,
       handleSubmit,
@@ -169,6 +177,7 @@ export class AppContextProvider extends Component {
       redirectTo,
       handleSignUp,
       user,
+      posts,
       addPost,
     };
     return (
