@@ -8,6 +8,7 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: row;
   margin: 4px;
+  color:white;
 
   & img {
     margin-top: 2px;
@@ -38,7 +39,7 @@ class RecommendedBlogs extends React.Component {
   render() {
     return (
       <>
-        <h3 style={{ marginLeft: "4px" }}>Recommended Blogs</h3>
+        <h1 style={{ margin: "20px 4px 2px 4px",color:"white" }}>Recommended Blogs</h1>
         <hr style={{ width: "255px" }} />
         <BlogCard />
         <BlogCard />

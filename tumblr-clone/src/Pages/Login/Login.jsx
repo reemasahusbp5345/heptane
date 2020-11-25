@@ -62,16 +62,16 @@ export class Login extends Component {
       password,
       currentUser,
       redirectTo,
+      isAuth,
     } = this.context;
     return (
       <div>
-        {/* Load Login if currentUser is not false or redirect to login */}
         {!currentUser ? (
           <LoginWrap>
             <HomeNav login={false} signup={true} />
             <div className="mid">
               <img src={process.env.PUBLIC_URL + "/tumblr.png"} alt="" />
-              <form onSubmit={(e) => handleSubmit(e)}>
+              <form onSubmit={(e) => handleSubmit(e, this.props.history)}>
                 <Input
                   name="email"
                   handleChange={handleChange}
@@ -94,8 +94,7 @@ export class Login extends Component {
             </div>
           </LoginWrap>
         ) : (
-          <Redirect />
-          // redirectTo(this.props.history, "/dashboard")
+          <Redirect to="/dashboard" />
         )}
       </div>
     );
