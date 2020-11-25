@@ -14,13 +14,12 @@ import {Link} from "react-router-dom"
  import {Modal} from "antd"
  import {PhotoPost} from "../Component/PostFolder/PhotoPost"
 import { AppContext } from "../Context/AppContext";
-import axios from "axios";
 
 const CardWrapper = styled.div`
   height: 95px;
   width: 500px;
   padding: 5px;
-  margin: 30px 30%;
+  margin: 5px 30%;
   display: flex;
   flex-direction: row;
 `;
@@ -40,7 +39,7 @@ margin: 7px;
 const PostBox = styled.div`
   
   border-radius:5px;
-  background:#fafafa;
+  background:#455a64;
   margin-top: 7px;
   padding-top: 5px;
   height: 90px;
@@ -68,28 +67,11 @@ class HeadCard extends React.Component{
 
   setModal1Visible(modal1Visible) {
     this.setState({ modal1Visible });
-    const {addPost,user}=this.context
+    const {addPost}=this.context
     const {text} = this.state;
-
-   axios.posts(`https://tumblr-server.herokuapp.com/posts`,{
-     author_id:user.id,
-    post_by: user.username,
-    content: text,
-    postType: "text",
-    src: "http://someimageorideolink.com",
-     numberOfNotes : 155,
-     hashtags : [
-      "#first_post_ever",
-      "tumblr"
-    ],
-     contentSource : "http://somerandomsource.com"
-    })
-    .then((res)=>this.setState({
-      posts:[...post]
-    }))
     let payload={text}
     addPost(payload)
-    console.log(user)
+    console.log(text)
   }
 
   setModal2Visible(modal2Visible) {
@@ -127,7 +109,7 @@ class HeadCard extends React.Component{
         </AvatarBox>
         <PostBox>
           <div>
-            <Icon path={mdiFormatTextVariantOutline} title="share" size={2} onClick={() => this.setModal1Visible(true)} style={{color:"black"}}/>
+            <Icon path={mdiFormatTextVariantOutline} title="share" size={2} onClick={() => this.setModal1Visible(true)}/>
             <p>Text</p>
             <Modal
                 title="Title"

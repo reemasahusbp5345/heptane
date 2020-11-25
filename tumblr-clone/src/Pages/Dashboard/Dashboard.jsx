@@ -9,7 +9,6 @@ import {RecommendedBlogs} from "../../Component/RecommendedBlogs"
 import {Radar} from "../../Component/Radar"
 import styled from "styled-components";
 import { AppContext } from "../../Context/AppContext";
-
 const Layout=styled.div`
   display:flex;
   background:#0d47a1;
@@ -19,28 +18,20 @@ const Content=styled.div`
 `;
 const Sider=styled.div`
   flex:1
-  
 `;
-
 // const {Sider, Content } = Layout;
-
-
 export class Dashboard extends React.Component {
-
   constructor(props){
     super(props)
     this.state={
-
     }
     this.feedCard=this.feedCard.bind(this)
   }
   feedCard(){
   }
-  
   render(){
     const {user}=this.context
     console.log(user)
-
     return (
       <div>
         <Layout>
@@ -58,5 +49,4 @@ export class Dashboard extends React.Component {
     );
   }
 };
-
 Dashboard.contextType=AppContext
