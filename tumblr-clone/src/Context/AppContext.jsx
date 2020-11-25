@@ -11,7 +11,10 @@ export class AppContextProvider extends Component {
     super(props);
     this.state = {
       isAuth: false,
-
+      email:"",
+      password:"",
+      currentUser:false,
+      isPageLoading:false,
       posting: false,
       posts: [],
     };
