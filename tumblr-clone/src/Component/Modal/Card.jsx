@@ -111,13 +111,13 @@ handlePost(e){
                     <Close onClick={handleModal} style>✖</Close>
                 </Header>
                 <Body>
-                    <InfoBox>
+                    {/* <InfoBox>
                         <ProfilePic width = "44" />
                         <div style={{marginLeft:"14px",lineHeight:"1.5",fontSize:"1rem",fontWeight:600}}   >
                             <div>Ree</div>
                             
                         </div>
-                    </InfoBox>
+                    </InfoBox> */}
                     <TextArea name="post" value={post} rows="5" cols="50" placeholder="What do you want to talk about?" onChange={(e)=>this.handleChange(e)} />
                 </Body>
                 <Footer>
