@@ -10,18 +10,21 @@ export class AppContextProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuth: false,
+      isAuth: true,
+        email:"",
+        password:"",
 
       posting: false,
       posts: [],
     };
-    // this.addPost = this.addPost.bind(this);
+    this.addPost = this.addPost.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.redirectTo = this.redirectTo.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.saveData = this.saveData.bind(this);
     this.checkData = this.checkData.bind(this);
+    this.addPhoto=this.addPhoto.bind(this)
   }
 
   componentDidMount() {
@@ -32,12 +35,60 @@ export class AppContextProvider extends Component {
     });
   }
 
-//   addPost(newPost) {
-//     const { post } = this.state;
-//     this.setState({
-//       post: [post, newPost],
-//     });
-//   }
+  addPost(text) {
+    const { post,currentUser } = this.state;
+    console.log(text)
+    // this.setState({
+    //   post: [post, newPost],
+    // });
+    // let payload={
+    //     "author_id":currentUser,
+    //     "post_by": "monis",
+    //     "content": text ,
+    //     "postType": "text",
+    //     "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
+    //     "numberOfNotes": 155,
+    //     "hashtags": [
+    //       "#first_post",
+    //       "tumblr"
+    //     ],
+    //     "contentSource": "http://somerandomsource.com"
+    // }
+    axios.post(`https://tumblr-server.herokuapp.com/posts`,{
+         "author_id":currentUser,
+        "post_by": "monis",
+        "content": text ,
+        "postType": "text",
+        "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
+        "numberOfNotes": 155,
+        "hashtags": [
+          "#first_post",
+          "tumblr"
+        ],
+        "contentSource": "http://somerandomsource.com"
+    })
+    .then((res)=>alert('succes'))
+    .catch((err)=>alert('err'))
+  }
+
+  addPhoto(text,img){
+      const {currentUser}=this.state;
+    axios.post(`https://tumblr-server.herokuapp.com/posts`,{
+        "author_id":currentUser,
+       "post_by": "monis",
+       "content": text,
+       "postType": "image",
+       "src": img,
+       "numberOfNotes": 155,
+       "hashtags": [
+         "#first_post",
+         "tumblr"
+       ],
+       "contentSource": "http://somerandomsource.com"
+   })
+   .then((res)=>alert('succes'))
+   .catch((err)=>alert('err'))
+  }
 
   // handling changes inside inputs
   handleChange(e) {
@@ -147,14 +198,15 @@ export class AppContextProvider extends Component {
   //     //binding
   // }
   render() {
-    const { isAuth, email, password, currentUser, data, post,user } = this.state;
-     
+    const { isAuth, email, password, currentUser, data, posts,user } = this.state;
+    
     const {
       handleChange,
       handleSubmit,
       redirectTo,
       handleSignUp,
       addPost,
+      addPhoto
     } = this;
     const value = {
       isAuth,
@@ -167,6 +219,8 @@ export class AppContextProvider extends Component {
       handleSignUp,
       user,
       addPost,
+      posts,
+      addPhoto
     };
     return (
       <AppContext.Provider value={value}>
