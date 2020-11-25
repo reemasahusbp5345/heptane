@@ -4,9 +4,6 @@ import {HomeNav} from './HomeNav'
 import {FooterLinks} from './FooterLinks'
 import {Button} from '../../Component/LandingPageComponents/Button'
 import {Link} from 'react-router-dom'
-
-
-
         const LandingWrap = styled.div`
         height:100vh;
         max-height:100%;
@@ -15,11 +12,9 @@ import {Link} from 'react-router-dom'
         display:flex;
         flex-direction:column;
         justify-content:space-between;
-
         & .mid img{
             width:200px;
         }
-
         & .mid{
             color: white;
             font-weight: bold;
@@ -27,17 +22,14 @@ import {Link} from 'react-router-dom'
             flex-direction:column;
             align-items:center;
         }
-
         .mid div{
             margin-bottom:15px;
         }
-
         & .mid p{
             white-space: pre-line;
             margin-top:5px;
             margin-bottom:5px;
         }
-
         & .bottom{
             width:100%;
             height:14%;

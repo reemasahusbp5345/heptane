@@ -25,13 +25,11 @@ export class Dashboard extends React.Component {
     super(props)
     this.state={
     }
-    this.feedCard=this.feedCard.bind(this)
+     
   }
-  feedCard(){
-  }
+   
   render(){
-    const {user}=this.context
-    console.log(user)
+    
     return (
       <div>
         <Layout>

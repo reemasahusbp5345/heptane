@@ -14,6 +14,7 @@ import {Link} from "react-router-dom"
  import {Modal} from "antd"
  import {PhotoPost} from "../Component/PostFolder/PhotoPost"
 import { AppContext } from "../Context/AppContext";
+import { CreatePost } from "../Component/Modal/CreatePost";
 
 const CardWrapper = styled.div`
   height: 95px;
@@ -22,6 +23,7 @@ const CardWrapper = styled.div`
   margin: 5px 30%;
   display: flex;
   flex-direction: row;
+  justify-content:space-between;
 `;
 
 const AvatarBox = styled.div`
@@ -39,11 +41,11 @@ margin: 7px;
 const PostBox = styled.div`
   
   border-radius:5px;
-  background:#455a64;
+  background:#f5f5f5;
   margin-top: 7px;
   padding-top: 5px;
   height: 90px;
-  width: 450px;
+  width: 600px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -60,9 +62,12 @@ class HeadCard extends React.Component{
       modal5Visible: false,
       modal6Visible: false,
       modal7Visible: false,
-     text:""
+     text:"",
+     open:false,
     };
     this.handleChange=this.handleChange.bind(this)
+    this.photo=React.createRef()
+    this.togglePhoto=this.togglePhoto.bind(this)
   }
 
   setModal1Visible(modal1Visible) {
@@ -70,8 +75,15 @@ class HeadCard extends React.Component{
     const {addPost}=this.context
     const {text} = this.state;
     let payload={text}
-    addPost(payload)
-    console.log(text)
+    addPost(text)
+    // console.log(text)
+  }
+
+  togglePhoto(){
+    const {open}=this.state
+    this.setState({
+      open:!open
+    })
   }
 
   setModal2Visible(modal2Visible) {
@@ -100,7 +112,7 @@ class HeadCard extends React.Component{
       } )
   }
   render(){
-        const {text}=this.state
+        const {text,open}=this.state
         
     return (
       <CardWrapper>
@@ -113,7 +125,7 @@ class HeadCard extends React.Component{
             <p>Text</p>
             <Modal
                 title="Title"
-                style={{ top: 20 }}
+                style={{ top: "20" }}
                 visible={this.state.modal1Visible}
                 onOk={() => this.setModal1Visible(false)}
 
@@ -124,20 +136,10 @@ class HeadCard extends React.Component{
                 <p>some contents...</p>
               </Modal>
           </div>
-          <div>
-            <Icon path={mdiCamera} title="share" size={2} onClick={() => this.setModal2Visible(true)} style={{color:"orangered"}}/>
+          <div  >
+            <Icon path={mdiCamera} title="share" size={2} onClick={this.togglePhoto}  style={{color:"orangered"}}/>
             <p>Photo</p>
-            <Modal
-                title="Photo"
-                style={{ top: 20 }}
-                visible={this.state.modal2Visible}
-                onOk={() => this.setModal2Visible(false)}
-                onCancel={() => this.setModal2Visible(false)}
-              >
-                <p> <PhotoPost/> </p>
-                <p>some contents...</p>
-                
-              </Modal>
+           { open?<CreatePost handleModal={this.togglePhoto}/>:null}
           </div>
           <div>
             <Icon path={mdiFormatQuoteOpen} title="share" size={2} onClick={() => this.setModal3Visible(true)} style={{color:"orange"}}/>
