@@ -13,7 +13,7 @@ export class AppContextProvider extends Component {
       currentUser:false,
       isPageLoading:false,
       posting: false,
-      posts: [],
+      posts: []
     };
     this.addPost = this.addPost.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -22,6 +22,7 @@ export class AppContextProvider extends Component {
     this.handleSignUp = this.handleSignUp.bind(this);
     this.saveData = this.saveData.bind(this);
     this.checkData = this.checkData.bind(this);
+    this.addPhoto=this.addPhoto.bind(this)
   }
 
   componentDidMount() {
@@ -32,12 +33,60 @@ export class AppContextProvider extends Component {
     });
   }
 
-//   addPost(newPost) {
-//     const { post } = this.state;
-//     this.setState({
-//       post: [post, newPost],
-//     });
-//   }
+  addPost(text) {
+    const { post,currentUser } = this.state;
+    console.log(text)
+    this.setState({
+      post: [post, newPost],
+    });
+    let payload={
+        "author_id":currentUser,
+        "post_by": "monis",
+        "content": text ,
+        "postType": "text",
+        "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
+        "numberOfNotes": 155,
+        "hashtags": [
+          "#first_post",
+          "tumblr"
+        ],
+        "contentSource": "http://somerandomsource.com"
+    }
+    axios.post(`https://tumblr-server.herokuapp.com/posts`,{
+         "author_id":currentUser,
+        "post_by": "monis",
+        "content": text ,
+        "postType": "text",
+        "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
+        "numberOfNotes": 0,
+        "hashtags": [
+          "#first_post",
+          "tumblr"
+        ],
+        "contentSource": "http://somerandomsource.com"
+    })
+    .then((res)=>alert('succes'))
+    .catch((err)=>alert('err'))
+  }
+
+  addPhoto(text,img){
+      const {currentUser}=this.state;
+    axios.post(`https://tumblr-server.herokuapp.com/posts`,{
+        "author_id":currentUser,
+       "post_by": "monis",
+       "content": text,
+       "postType": "image",
+       "src": img,
+       "numberOfNotes": 0,
+       "hashtags": [
+         "#first_post",
+         "tumblr"
+       ],
+       "contentSource": "http://somerandomsource.com"
+   })
+   .then((res)=>alert('succes'))
+   .catch((err)=>alert('err'))
+  }
 
   // handling changes inside inputs
   handleChange(e) {
@@ -49,8 +98,6 @@ export class AppContextProvider extends Component {
 
   // handling onSubmit logic of form
   // handling changes inside inputs
-
-  // handling onSubmit logic of form
   async handleSubmit(e) {
     e.preventDefault();
 
@@ -58,14 +105,16 @@ export class AppContextProvider extends Component {
       isPageLoading: true,
     });
     await axios
-      .get("https://tumblr-server.herokuapp.com/users")
-      .then((res) => this.saveData(res.data))
-      .catch((err) => console.log(err));
+    .get("https://tumblr-server.herokuapp.com/users")
+    .then((res) => this.saveData(res.data, history))
+    .catch((err) => console.log(err));
+
+    this.setState({
+      isPageLoading: false,
+    });
   }
 
-  saveData(data) {
-    console.log(data);
-
+  saveData(data, history) {
     // checking if email is present in database
     // if it exists then we will check if pasword is corect
     let user = data.find(
@@ -76,19 +125,24 @@ export class AppContextProvider extends Component {
     if (user !== undefined) {
       this.setState({
         currentUser: user.id,
-        isAuth: true,
+        isAuth:true
       });
+      history.push("/dashboard")
     }
     else{
       this.setState({
-        currentUser: false
+        currentUser: false,
       });
     }
+  
   }
 
   // function to redirect
   redirectTo(history, path) {
     history.push(path);
+    this.setState({
+      isAuth: false
+    })
   }
 
   async handleSignUp(e, email, username, password) {
@@ -138,14 +192,15 @@ export class AppContextProvider extends Component {
   }
 
   render() {
-    const { isAuth, email, password, currentUser, data, post,user } = this.state;
-     
+    const { isAuth, email, password, currentUser, data, posts,user } = this.state;
+    
     const {
       handleChange,
       handleSubmit,
       redirectTo,
       handleSignUp,
       addPost,
+      addPhoto
     } = this;
     const value = {
       isAuth,
@@ -158,6 +213,8 @@ export class AppContextProvider extends Component {
       handleSignUp,
       user,
       addPost,
+      posts,
+      addPhoto
     };
     return (
       <AppContext.Provider value={value}>
