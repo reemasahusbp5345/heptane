@@ -53,7 +53,7 @@ const PostBoxFooter = styled.div`
 const Radar = () => {
   return (
     <>
-      <h3 style={{ marginLeft: "4px" }}>Radar</h3>
+      <h3 style={{ marginLeft: "4px" ,color:"white"}}>Radar</h3>
       <hr style={{ width: "255px" }} />
 
       {/* Main Card Content */}

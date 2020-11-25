@@ -8,6 +8,7 @@ import {
   mdiShareVariantOutline,
   mdiDotsHorizontal,
 } from "@mdi/js";
+import { AppContext } from "../Context/AppContext";
 
 const CardWrapper = styled.div`
   height: 600px;
@@ -36,7 +37,7 @@ const PostBox = styled.div`
   border-radius: 5px;
   margin-top: 10px;
   height: 590px;
-  width: 450px;
+  width: 500px;
   margin: 4px;
 `;
 const PostBoxHeader = styled.div`
@@ -97,19 +98,19 @@ const PostBoxFooter = styled.div`
   }
 `;
 
-const PostCard = () => {
+const PostCard = ({ id, postImgUrl, username, avatarUrl }) => {
   return (
     <CardWrapper>
       {/* Card Header */}
       <AvatarBox>
-        <img src="https://via.placeholder.com/30" alt="avatar" />
+        <img src={avatarUrl} alt="avatar" />
       </AvatarBox>
 
       {/* Main Card Content */}
       <PostBox>
         <PostBoxHeader>
           <div>
-            <div>username</div>
+            <div>{username}</div>
             <a
               href="https://www.gooogle.com"
               style={{ textDecoration: "none" }}
@@ -123,16 +124,17 @@ const PostCard = () => {
         </PostBoxHeader>
         <PostBoxContent>
           <div>
-            <img src="https://via.placeholder.com/30" alt="usernameAvatar" />
-            <div>username</div>
+            <img src={avatarUrl} alt="usernameAvatar" />
+            <div>{username}</div>
             <a href="https://www.google.com" style={{ textDecoration: "none" }}>
               Follow
             </a>
           </div>
           <div style={{ width: "40px" }}>
             <img
-              src="https://via.placeholder.com/400x300"
+              src={postImgUrl}
               alt="usernameAvatar"
+              style={{ width: "390px" }}
             />
           </div>
           <div>Content</div>
