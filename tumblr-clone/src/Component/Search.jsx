@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 const SearchInput = styled.div`
-    width:100px;
+    width:500px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background-color:#3f51b5;
+    background-color:#37474f;
     border-radius:3px;
     height:40px;
     background:#fff;
@@ -18,7 +18,7 @@ const SearchInput = styled.div`
     }
     
     & input{
-        width:50%;
+        width:100%;
         border-radius:3px;
         height:40px;
         border:none;
