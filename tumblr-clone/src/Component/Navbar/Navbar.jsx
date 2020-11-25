@@ -13,7 +13,7 @@ import {
 import { Modal, Drawer } from "antd";
 import { Logo } from "../../Component/Logo";
 import { User } from "../../Component/User";
-import {Search} from "../Search";
+import Search from "antd/lib/input/Search";
 
 const Wrapper = styled.div`
   position: relative;
@@ -29,9 +29,8 @@ const WrraperItem = styled.div`
   color: white;
 `;
 const SearchItem = styled.div`
-  flex:10;
-  margin: 5px;
-  width:200px;
+  flex: 9;
+  margin: 10px;
 `;
 const LogoItem = styled.div`
   margin: auto 20px;
@@ -63,7 +62,7 @@ class Navbar extends React.Component {
           </LogoItem>
 
           <SearchItem>
-             <Search/>
+            <Search />
           </SearchItem>
           <WrraperItem>
             <Link to={"/dashboard"} style={{ color: "white" }}>
