@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
     const SmallButtonsWrap = styled.div`
-        & button{
+        & a{
             width:60px;
             height:32px;
             border: none;
@@ -18,10 +19,10 @@ import styled from 'styled-components'
     `
 
 export const SmallButtons = props => {
-    const { color="#fff", bgColor="rgba(0,0,0,0.1)", label="submit" } = props
+    const { label="submit", path } = props
     return (
         <SmallButtonsWrap>
-            <button>{props.label}</button>
+            <Link to={path}>{label}</Link>
         </SmallButtonsWrap>
     )
 }

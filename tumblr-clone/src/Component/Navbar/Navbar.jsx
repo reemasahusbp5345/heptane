@@ -8,30 +8,30 @@ import {
   MailOutlined,
   SmileOutlined,
   ThunderboltOutlined,
-  UserOutlined,
   EditOutlined,
 } from "@ant-design/icons";
 import { Modal, Drawer } from "antd";
 import { Logo } from "../../Component/Logo";
 import { User } from "../../Component/User";
-import Search from "antd/lib/input/Search";
+import {Search} from "../Search";
 
 const Wrapper = styled.div`
   position: relative;
   height: 50px;
-  background-color: #1a237e;
+  background-color: #001935;
   color: white;
   display: flex;
 `;
 const WrraperItem = styled.div`
   flex: 1;
-  
+
   font-size: 25px;
   color: white;
 `;
 const SearchItem = styled.div`
-  flex: 9;
-  margin: 10px;
+  flex:10;
+  margin: 5px;
+  width:200px;
 `;
 const LogoItem = styled.div`
   margin: auto 20px;
@@ -63,7 +63,7 @@ class Navbar extends React.Component {
           </LogoItem>
 
           <SearchItem>
-            <Search />
+             <Search/>
           </SearchItem>
           <WrraperItem>
             <Link to={"/dashboard"} style={{ color: "white" }}>

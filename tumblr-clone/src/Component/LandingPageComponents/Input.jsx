@@ -18,12 +18,12 @@ import styled from 'styled-components'
 export class Input extends Component {
     render() {
 
-        const { type="text", placeholder, value, handleChange } = this.props
+        const { type="text", placeholder, value, handleChange, name } = this.props
 
 
         return (
             <InputWrap>
-                <input name={type} value={value} onChange={ e => handleChange(e) } placeholder={placeholder} type={type}/>
+                <input name={name} value={value} onChange={ e => handleChange(e) } placeholder={placeholder} type={type}/>
             </InputWrap>
         )
     }
