@@ -147,7 +147,7 @@ export class AppContextProvider extends Component {
   //     //binding
   // }
   render() {
-    const { isAuth, email, password, currentUser, data, post } = this.state;
+    const { isAuth, email, password, currentUser, data, post,user } = this.state;
      
     const {
       handleChange,
