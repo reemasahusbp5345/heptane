@@ -16,7 +16,7 @@ export class AppContextProvider extends Component {
       currentUser:false,
       isPageLoading:false,
       posting: false,
-      posts: [],
+      posts: []
     };
     // this.addPost = this.addPost.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -54,21 +54,23 @@ export class AppContextProvider extends Component {
   // handling changes inside inputs
 
   // handling onSubmit logic of form
-  async handleSubmit(e) {
+  async handleSubmit(e, history) {
     e.preventDefault();
 
     this.setState({
       isPageLoading: true,
     });
     await axios
-      .get("https://tumblr-server.herokuapp.com/users")
-      .then((res) => this.saveData(res.data))
-      .catch((err) => console.log(err));
+    .get("https://tumblr-server.herokuapp.com/users")
+    .then((res) => this.saveData(res.data, history))
+    .catch((err) => console.log(err));
+
+    this.setState({
+      isPageLoading: false,
+    });
   }
 
-  saveData(data) {
-    console.log(data);
-
+  saveData(data, history) {
     // checking if email is present in database
     // if it exists then we will check if pasword is corect
     let user = data.find(
@@ -79,7 +81,13 @@ export class AppContextProvider extends Component {
     if (user !== undefined) {
       this.setState({
         currentUser: user.id,
-        isAuth: true,
+        isAuth:true
+      });
+      history.push("/dashboard")
+    }
+    else{
+      this.setState({
+        currentUser: false,
       });
     }
   }
@@ -87,6 +95,9 @@ export class AppContextProvider extends Component {
   // function to redirect
   redirectTo(history, path) {
     history.push(path);
+    this.setState({
+      isAuth: false
+    })
   }
 
   async handleSignUp(e, email, username, password, history) {
@@ -132,23 +143,6 @@ export class AppContextProvider extends Component {
     }
   }
 
-  // render() {
-  //     const { isAuth,user } = this.state
-  //     console.log(user)
-  //     const {addPost}=this
-  //     const value ={
-  //         isAuth,addPost,
-
-  //         email:"",
-  //         password:"",
-  //         isPageLoading: false,
-  //         data:[], //
-  //         currentUser:false
-
-  //     }
-
-  //     //binding
-  // }
   render() {
     const { isAuth, email, password, currentUser, data, post,user } = this.state;
      

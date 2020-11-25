@@ -7,14 +7,11 @@ import {Link} from 'react-router-dom'
 
 
 
-export class Landing extends Component {
-    render() {
-        const {url} = this.props
         const LandingWrap = styled.div`
         height:100vh;
         max-height:100%;
         width:100vw;
-        background: url(${url});
+        background: url('https://64.media.tumblr.com/e799c282ff66b86fc00e89906f8e6b89/303bb91cfb35cfbd-d1/s2048x3072/4bb69f9bfbe4956e4d4100d1aa1a964edf09add2.png');
         display:flex;
         flex-direction:column;
         justify-content:space-between;
@@ -48,22 +45,9 @@ export class Landing extends Component {
             flex-direction:column;
             justify-content:flex-end;
         }
-
-
-        & button.bottomBtn{
-            width:100%;
-            border:none;
-            outline:none;
-            min-height:50%;
-            background-color:#00CF35;
-            border-top:3px solid #03ae2d;    
-            color:white;
-            font-weight:bold;
-            font-size:1rem;
-            letter-spacing:0.25px;
-            cursor: pointer;
-        }
         `
+export class Landing extends Component {
+    render() {
         return (
             <LandingWrap className="first">
                 <HomeNav/>
@@ -71,7 +55,7 @@ export class Landing extends Component {
                     <img src={process.env.PUBLIC_URL + '/tumblr.png'} alt=""/>
                     <p>Come for what you love. {'\n'}
                     Stay for what you discover.</p>
-                    <Button bgColor="#00B8FF" color="#fff" label="Get Started" />
+                    <Button label="Get Started" />
                     <Button label="Log in" />
                     <Link style={{color:"white"}} to="/explore">
                         <div style={{display:"flex", alignItems:"center"}}>

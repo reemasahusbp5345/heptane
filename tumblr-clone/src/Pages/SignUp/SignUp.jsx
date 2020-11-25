@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {HomeNav} from '../Landing/HomeNav'
 import {FooterLinks} from '../Landing/FooterLinks'
 import {Button} from '../../Component/LandingPageComponents/Button'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {AppContext} from '../../Context/AppContext'
 import {Input} from '../../Component/LandingPageComponents/Input'
 
@@ -78,7 +78,9 @@ export class SignUp extends Component {
         const { handleSignUp, currentUser, redirectTo } = this.context
         const {email, password, username} = this.state
         return (
-                <SignUpWrap>
+            <div>
+
+                { !currentUser ? <SignUpWrap>
                     <HomeNav/>
                     <div className="mid">
                         <img src={process.env.PUBLIC_URL + '/tumblr.png'} alt=""/>
@@ -104,8 +106,9 @@ export class SignUp extends Component {
                     <div className="bottom">
                         <FooterLinks />
                     </div>
-                </SignUpWrap>
+                </SignUpWrap> : <Redirect to="/dashboard" /> }
 
+            </div>
         )
     }
 }
