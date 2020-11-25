@@ -16,7 +16,7 @@ export class AppContextProvider extends Component {
             posting:false,
             user:[],
         }
-        this.addPost=this.addPost.bind(this)
+        // this.addPost=this.addPost.bind(this)
     }
 
     componentDidMount(){
