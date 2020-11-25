@@ -16,6 +16,13 @@ export class AppContextProvider extends Component {
             user:[],
         }
         this.addPost=this.addPost.bind(this)
+        //binding
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.redirectTo = this.redirectTo.bind(this)
+        this.handleSignUp = this.handleSignUp.bind(this)
+        this.saveData = this.saveData.bind(this)
+        this.checkData = this.checkData.bind(this)
     }
 
     componentDidMount(){
@@ -36,30 +43,6 @@ export class AppContextProvider extends Component {
     //     })
        
     // }
-
-    render() {
-        const { isAuth,user } = this.state
-        console.log(user)
-        const {addPost}=this
-        const value ={
-            isAuth,addPost,
- 
-            email:"",
-            password:"",
-            isPageLoading: false,
-            data:[], //
-            currentUser:false 
-
-        }
-
-        //binding
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.redirectTo = this.redirectTo.bind(this)
-        this.handleSignUp = this.handleSignUp.bind(this)
-        this.saveData = this.saveData.bind(this)
-        this.checkData = this.checkData.bind(this)
-    }
     
     // handling changes inside inputs
     handleChange(e){
