@@ -5,6 +5,7 @@ import { FooterLinks } from "../Landing/FooterLinks";
 import { Button } from "../../Component/LandingPageComponents/Button";
 import { Input } from "../../Component/LandingPageComponents/Input";
 import { AppContext } from "../../Context/AppContext";
+import {Redirect} from 'react-router-dom'
 
 const LoginWrap = styled.div`
   height: 100vh;
@@ -61,16 +62,15 @@ export class Login extends Component {
       password,
       currentUser,
       redirectTo,
+      isAuth
     } = this.context;
     return (
       <div>
-        {/* Load Login if currentUser is not false or redirect to login */}
-        {!currentUser ? (
-          <LoginWrap>
+         { !currentUser ? <LoginWrap>
             <HomeNav login={false} signup={true} />
             <div className="mid">
               <img src={process.env.PUBLIC_URL + "/tumblr.png"} alt="" />
-              <form onSubmit={(e) => handleSubmit(e)}>
+              <form onSubmit={(e) => handleSubmit(e, this.props.history)}>
                 <Input
                   name="email"
                   handleChange={handleChange}
@@ -91,10 +91,7 @@ export class Login extends Component {
             <div className="bottom">
               <FooterLinks />
             </div>
-          </LoginWrap>
-        ) : (
-          redirectTo(this.props.history, "/dashboard")
-        )}
+          </LoginWrap> : <Redirect to="/dashboard" /> }
       </div>
     );
   }
