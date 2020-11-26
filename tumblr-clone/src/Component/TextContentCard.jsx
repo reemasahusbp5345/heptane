@@ -12,11 +12,11 @@ import {
 } from "@mdi/js";
 import Axios from "axios";
 const CardWrapper = styled.div`
-  height: auto;
-  width: 500px;
+  max-width: 540px;
   margin-left: 30%;
   display: flex;
-  flex-direction: row;
+  align-items: flex-start;
+  justify-content:space-between;
 `;
 const AvatarBox = styled.div`
   margin-top: 10px;
@@ -35,8 +35,8 @@ const PostBox = styled.div`
   color: black;
   border-radius: 5px;
   margin-top: 10px;
-  height: auto;
-  width: 450px;
+  max-width: 445px;
+  width: 100%;
   margin: 4px;
 `;
 const PostBoxHeader = styled.div`
@@ -119,9 +119,16 @@ class TextContentCard extends React.Component {
     });
   }
   render() {
-    const { id, postText, username, avatarUrl } = this.props;
+    const { id, postText, username, avatarUrl, title } = this.props;
     const { handleToggle } = this;
     const { isLike } = this.state;
+    let postTitle
+    if(title){
+      postTitle = title
+    }
+    else{
+      postTitle = ""
+    }
     return (
       <CardWrapper>
         {/* Card Header */}
@@ -145,7 +152,7 @@ class TextContentCard extends React.Component {
             </div>
           </PostBoxHeader>
           <PostBoxContent>
-            <div style={{ fontSize: "30px" }}>Title</div>
+            <div style={{ fontSize: "30px" }}>{postTitle}</div>
             <div style={{ fontSize: "20px" }}>{postText}</div>
           </PostBoxContent>
           {/* Card Footer */}
