@@ -37,6 +37,29 @@ const LandingWrap = styled.div`
     flex-direction: column;
     justify-content: flex-end;
   }
+
+  & .link1, .link2{
+    width:300px;
+    height:45px;
+    border: none;
+    outline:none;
+    background-color: #fff;
+    color: #444;
+    font-size:1rem;
+    font-weight:bold;
+    letter-spacing:0.25px;
+    cursor:pointer;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+  }
+
+  & .link1{
+    margin-bottom:20px;
+    background: #00b8ff;
+    color:white;
+  }
+  
 `;
 export class Landing extends Component {
   render() {
@@ -49,9 +72,16 @@ export class Landing extends Component {
             Come for what you love. {"\n"}
             Stay for what you discover.
           </p>
-          <Button label="Get Started" />
-          <Button label="Log in" />
-          <Link style={{ color: "white" }} to="/explore">
+          {/* <Button label="Get Started" />
+          <Button label="Log in" /> */}
+          <Link className="link1" to="/signup">
+            Get Started
+          </Link>
+          <Link className="link2" to="/login">
+            Log in
+          </Link>
+
+          <Link style={{ color: "white" }} to="/trending/explore">
             <div style={{ display: "flex", alignItems: "center" }}>
               <svg
                 style={{ width: "24px", height: "24px" }}
