@@ -8,12 +8,13 @@ export class AppContextProvider extends Component {
     super(props);
     this.state = {
       isAuth: false,
-      email:"",
-      password:"",
-      currentUser:false,
-      isPageLoading:false,
+      email: "",
+      password: "",
+      currentUser: false,
+      isPageLoading: false,
       posting: false,
-      posts: []
+      posts: [],
+      like: false,
     };
     this.addPost = this.addPost.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -22,8 +23,11 @@ export class AppContextProvider extends Component {
     this.handleSignUp = this.handleSignUp.bind(this);
     this.saveData = this.saveData.bind(this);
     this.checkData = this.checkData.bind(this);
-    this.addPhoto=this.addPhoto.bind(this)
+    this.addPhoto = this.addPhoto.bind(this);
+    this.handleLike = this.handleLike.bind(this);
   }
+
+  handleLike() {}
 
   componentDidMount() {
     axios.get(`https://tumblr-server.herokuapp.com/posts`).then((res) => {
@@ -36,58 +40,59 @@ export class AppContextProvider extends Component {
   
 
   addPost(text) {
-    const { post,currentUser } = this.state;
-    console.log(text)
-    this.setState({
-      post: [post, newPost],
-    });
-    let payload={
-        "author_id":currentUser,
-        "post_by": "monis",
-        "content": text ,
-        "postType": "text",
-        "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
-        "numberOfNotes": 155,
-        "hashtags": [
-          "#first_post",
-          "tumblr"
-        ],
-        "contentSource": "http://somerandomsource.com"
-    }
-    axios.post(`https://tumblr-server.herokuapp.com/posts`,{
-         "author_id":currentUser,
-        "post_by": "monis",
-        "content": text ,
-        "postType": "text",
-        "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
-        "numberOfNotes": 0,
-        "hashtags": [
-          "#first_post",
-          "tumblr"
-        ],
-        "contentSource": "http://somerandomsource.com"
-    })
-    .then((res)=>alert('succes'))
-    .catch((err)=>alert('err'))
+    const { post, currentUser } = this.state;
+    console.log(text);
+    // this.setState({
+    //   post: [post, newPost],
+    // });
+    // let payload={
+    //     "author_id":currentUser,
+    //     "post_by": "monis",
+    //     "content": text ,
+    //     "postType": "text",
+    //     "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
+    //     "numberOfNotes": 155,
+    //     "hashtags": [
+    //       "#first_post",
+    //       "tumblr"
+    //     ],
+    //     "contentSource": "http://somerandomsource.com"
+    // }
+    axios
+      .post(`https://tumblr-server.herokuapp.com/posts`, {
+        author_id: currentUser,
+        post_by: "monis",
+        content: text,
+        postType: "text",
+        src:
+          "https://assets.tumblr.com/images/default_avatar/sphere_open_64.png",
+        numberOfNotes: 0,
+        hashtags: ["#first_post", "tumblr"],
+        isFollow: false,
+        isLike: false,
+      })
+      .then((res) => alert("succes"))
+      .catch((err) => alert("err"));
   }
 
-  addPhoto(text,img){
-      const {currentUser}=this.state;
-    axios.post(`https://tumblr-server.herokuapp.com/posts`,{
-        "author_id":currentUser,
-       "post_by": "monis",
-       "content": text,
-       "postType": "image",
-       "src": img,
-       "numberOfNotes": 0,
-       "hashtags": [
-         "#first_post",
-         "tumblr"
-       ],
-       "contentSource": "http://somerandomsource.com"
-   })
-   .then((res)=>alert('succes'))
-   .catch((err)=>alert('err'))
+  addPhoto(post, img) {
+    const { currentUser } = this.state;
+    // console.log(img)
+    axios
+      .post(`https://tumblr-server.herokuapp.com/posts`, {
+        author_id: currentUser,
+        post_by: "monis",
+        content: img,
+        postType: "image",
+        src:
+          "https://assets.tumblr.com/images/default_avatar/sphere_open_64.png",
+        numberOfNotes: 0,
+        hashtags: ["#first_post", "tumblr"],
+        isFollow: false,
+        isLike: false,
+      })
+      .then((res) => alert("succes"))
+      .catch((err) => alert("err"));
   }
 
   // handling changes inside inputs
@@ -107,9 +112,9 @@ export class AppContextProvider extends Component {
       isPageLoading: true,
     });
     await axios
-    .get("https://tumblr-server.herokuapp.com/users")
-    .then((res) => this.saveData(res.data, history))
-    .catch((err) => console.log(err));
+      .get("https://tumblr-server.herokuapp.com/users")
+      .then((res) => this.saveData(res.data, history))
+      .catch((err) => console.log(err));
 
     this.setState({
       isPageLoading: false,
@@ -127,24 +132,22 @@ export class AppContextProvider extends Component {
     if (user !== undefined) {
       this.setState({
         currentUser: user.id,
-        isAuth:true
+        isAuth: true,
       });
-      history.push("/dashboard")
-    }
-    else{
+      history.push("/dashboard");
+    } else {
       this.setState({
         currentUser: false,
       });
     }
-  
   }
 
   // function to redirect
   redirectTo(history, path) {
     history.push(path);
     this.setState({
-      isAuth: false
-    })
+      isAuth: false,
+    });
   }
 
   async handleSignUp(e, email, username, password, history) {
@@ -160,9 +163,9 @@ export class AppContextProvider extends Component {
         this.checkData(res.data, email, username, password, history)
       )
       .catch((err) => console.log(err));
-      this.setState({
-        isPageLoading: false,
-      });
+    this.setState({
+      isPageLoading: false,
+    });
   }
 
   async checkData(data, email, username, password, history) {
@@ -194,15 +197,24 @@ export class AppContextProvider extends Component {
   }
 
   render() {
-    const { isAuth, email, password, currentUser, data, posts,user } = this.state;
-    
+    const {
+      isAuth,
+      email,
+      password,
+      currentUser,
+      data,
+      posts,
+      user,
+    } = this.state;
+
     const {
       handleChange,
       handleSubmit,
       redirectTo,
       handleSignUp,
       addPost,
-      addPhoto
+      addPhoto,
+      handleLike,
     } = this;
     const value = {
       isAuth,
@@ -214,9 +226,11 @@ export class AppContextProvider extends Component {
       redirectTo,
       handleSignUp,
       user,
+      posts,
       addPost,
       posts,
-      addPhoto
+      addPhoto,
+      handleLike,
     };
     return (
       <AppContext.Provider value={value}>
