@@ -49,7 +49,7 @@ export class Dashboard extends React.Component {
               />
             ))} */}
              
-              {posts.filter((item)=>{return item.postType==="image"}).map((item)=>
+              {/* {posts.filter((item)=>{return item.postType==="image"}).map((item)=>
                  <PostCard
                  id={item.id}
                  postImgUrl={item.content}
@@ -65,7 +65,27 @@ export class Dashboard extends React.Component {
                  username={item.post_by}
                  avatarUrl={item.src}
                />
-              )} 
+              )}  */}
+
+              {posts?.map((item)=>
+                {if(item.postType==="image"){
+                  <PostCard
+                  id={item.id}
+                  postImgUrl={item.content}
+                  username={item.post_by}
+                  avatarUrl={item.src}
+                />
+                }
+              else{
+                <TextContentCard
+                id={item.id}
+                postImgUrl={item.content}
+                username={item.post_by}
+                avatarUrl={item.src}
+              />
+              }}
+                
+              )}
             
             
           </Content>
