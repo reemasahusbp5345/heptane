@@ -47,7 +47,48 @@ export class Dashboard extends React.Component {
                 isLike={a[a.length - 1 - index].isLike}
                 // onToggle={this.handleToggle}
               />
-            ))}
+            ))}  
+             
+              {/* {posts.filter((item)=>{return item.postType==="image"}).map((item)=>
+                 <PostCard
+                 id={item.id}
+                 postImgUrl={item.content}
+                 username={item.post_by}
+                 avatarUrl={item.src}
+               />
+              )} 
+              
+              {posts.filter((item)=>{return item.postType==="text"}).map((item)=>
+                 <TextContentCard
+                 id={item.id}
+                 postImgUrl={item.content}
+                 username={item.post_by}
+                 avatarUrl={item.src}
+               />
+              )}  */}
+
+              {/* {posts?.map((item)=>
+                {if(item.postType==="image"){
+                  <PostCard
+                  id={item.id}
+                  postImgUrl={item.content}
+                  username={item.post_by}
+                  avatarUrl={item.src}
+                />
+                }
+              else{
+                <TextContentCard
+                id={item.id}
+                postImgUrl={item.content}
+                username={item.post_by}
+                avatarUrl={item.src}
+              />
+              }}
+                
+              )}
+            
+            
+            ))} */}
           </Content>
           <Sider>
             <RecommendedBlogs />
