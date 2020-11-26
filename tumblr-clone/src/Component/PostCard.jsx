@@ -13,7 +13,6 @@ import Axios from "axios";
 import {Avatar} from './Avatar'
 
 const CardWrapper = styled.div`
-  height: 600px;
   max-width: 540px;
   margin-left: 30%;
   display: flex;
@@ -37,8 +36,7 @@ const PostBox = styled.div`
   color: black;
   border-radius: 5px;
   margin-top: 10px;
-  height: 590px;
-  max-width: 440px;
+  max-width: 445px;
   width: 100%;
   margin: 4px;
 `;

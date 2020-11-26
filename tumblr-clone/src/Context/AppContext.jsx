@@ -25,6 +25,7 @@ export class AppContextProvider extends Component {
     this.addPhoto = this.addPhoto.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.update = this.update.bind(this);
+    this.addText = this.addText.bind(this);
   }
   handleLike() {}
   componentDidMount() {
@@ -38,9 +39,31 @@ export class AppContextProvider extends Component {
       });
     });
   }
+
+  addText(title, text){
+    const { currentUser } = this.state;
+
+    axios
+      .post(`https://tumblr-server.herokuapp.com/posts`, {
+        author_id: currentUser,
+        post_by: "reema",
+        content: text,
+        postType: "text",
+        title: title,
+        src: "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
+        numberOfNotes: 0,
+        hashtags: ["#first_post", "tumblr"],
+        isFollow: false,
+        isLike: false,
+      })
+      .then((res) => this.update())
+      .catch((err) => alert("err"));
+  }
+
+
   addPost(text) {
     const { post, currentUser, activeUser } = this.state;
-    console.log(activeUser);
+
     // this.setState({
     //   post: [post, newPost],
     // });
@@ -73,6 +96,7 @@ export class AppContextProvider extends Component {
       .then((res) => this.update())
       .catch((err) => alert("err"));
   }
+
   addPhoto(post, img) {
 
     const { currentUser,activeUser } = this.state;
@@ -93,6 +117,7 @@ export class AppContextProvider extends Component {
       .then((res) => this.update())
       .catch((err) => alert("err"));
   }
+
   // handling changes inside inputs
   handleChange(e) {
     const { name, value } = e.target;
@@ -100,6 +125,7 @@ export class AppContextProvider extends Component {
       [name]: value,
     });
   }
+
   // handling onSubmit logic of form
   // handling changes inside inputs
   async handleSubmit(e, history) {
@@ -115,6 +141,7 @@ export class AppContextProvider extends Component {
       isPageLoading: false,
     });
   }
+
   saveData(data, history) {
     // checking if email is present in database
     // if it exists then we will check if pasword is corect
@@ -136,6 +163,7 @@ export class AppContextProvider extends Component {
       });
     }
   }
+
   // function to redirect
   redirectTo(history, path) {
     history.push(path);
@@ -158,6 +186,7 @@ export class AppContextProvider extends Component {
       isPageLoading: false,
     });
   }
+
   async checkData(data, email, username, password, history) {
     // checking if email is present in database
     // if it exists then we will check if username exists
@@ -184,6 +213,7 @@ export class AppContextProvider extends Component {
         .catch((err) => console.log(err));
     }
   }
+
   render() {
     const {
       isAuth,
@@ -203,6 +233,7 @@ export class AppContextProvider extends Component {
       addPost,
       addPhoto,
       handleLike,
+      addText
     } = this;
     const value = {
       isAuth,
@@ -220,6 +251,7 @@ export class AppContextProvider extends Component {
       addPhoto,
       activeUser,
       handleLike,
+      addText
     };
     return (
       <AppContext.Provider value={value}>

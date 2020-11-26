@@ -51,10 +51,6 @@ const Body = styled.div`
     }
 `
 
-// const TextArea = styled.textarea`
-    
-// `
-
 const Footer = styled.div`
     display:flex;
     height: 60px;

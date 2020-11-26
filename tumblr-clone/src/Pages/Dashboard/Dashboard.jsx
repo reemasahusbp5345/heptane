@@ -1,8 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
-// import "antd/dist/antd.css";
-// import "./index.css";
-// import { Layout } from "antd";
 import { HeadCard } from "../../Component/HeadCard";
 import { PostCard } from "../../Component/PostCard";
 import { RecommendedBlogs } from "../../Component/RecommendedBlogs";
@@ -10,6 +6,8 @@ import { Radar } from "../../Component/Radar";
 import styled from "styled-components";
 import { AppContext } from "../../Context/AppContext";
 import { TextContentCard } from "../../Component/TextContentCard";
+import {Redirect} from 'react-router-dom'
+
 const Layout = styled.div`
   display: flex;
   background: #001935;
@@ -31,9 +29,9 @@ export class Dashboard extends React.Component {
   }
   feedCard() {}
   render() {
-    const { user, posts } = this.context;
+    const { user, posts, isAuth } = this.context;
     console.log(posts);
-    return (
+    return isAuth ? (
       <div>
         <Layout>
           <Content>
@@ -71,6 +69,7 @@ export class Dashboard extends React.Component {
                   return (
                     <TextContentCard
                       key={item.id}
+                      title={item.title}
                       id={item.id}
                       postText={item.content}
                       username={item.post_by}
@@ -91,7 +90,7 @@ export class Dashboard extends React.Component {
           </Sider>
         </Layout>
       </div>
-    );
+    ) : <Redirect to="/login" /> 
   }
 }
 Dashboard.contextType = AppContext;

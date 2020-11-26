@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components"; 
 import {Link} from "react-router-dom"
 import {PhotoCard} from './Modal/Card'
+import {TextCard} from './Modal/TextCard'
 import { AppContext } from "../Context/AppContext";
 import { CreatePost } from "../Component/Modal/CreatePost";
 import { CreateCard } from "./profile/CreateCard";
@@ -167,7 +168,7 @@ class HeadCard extends React.Component {
         </PostBox>
         { txtOpen ?
             <CreatePost>
-              <PhotoCard  handleModal={this.toggleText} />
+              <TextCard  handleModal={this.toggleText} />
             </CreatePost>
  
             :null}
