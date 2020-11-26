@@ -1,18 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Icon from "@mdi/react";
-import {
-  mdiFormatTextVariantOutline,
-  mdiCamera,
-  mdiFormatQuoteOpen,
-  mdiLinkVariant,
-  mdiWechat,
-  mdiHeadphones,
-  mdiVideoVintage,
-} from "@mdi/js";
+ 
 import {Link} from "react-router-dom"
- import {Modal} from "antd"
- import {PhotoPost} from "../Component/PostFolder/PhotoPost"
+ 
 import { AppContext } from "../Context/AppContext";
 import { CreatePost } from "../Component/Modal/CreatePost";
 
@@ -68,13 +58,7 @@ class HeadCard extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      modal1Visible: false,
-      modal2Visible: false,
-      modal3Visible: false,
-      modal4Visible: false,
-      modal5Visible: false,
-      modal6Visible: false,
-      modal7Visible: false,
+      
      text:"",
      open:false,
     };
@@ -83,14 +67,14 @@ class HeadCard extends React.Component{
     this.togglePhoto=this.togglePhoto.bind(this)
   }
 
-  setModal1Visible(modal1Visible) {
-    this.setState({ modal1Visible });
-    const {addPost}=this.context
-    const {text} = this.state;
-    let payload={text}
-    addPost(text)
-    // console.log(text)
-  }
+  // setModal1Visible(modal1Visible) {
+  //   this.setState({ modal1Visible });
+  //   const {addPost}=this.context
+  //   const {text} = this.state;
+  //   let payload={text}
+  //   addPost(text)
+  //   // console.log(text)
+  // }
 
   togglePhoto(){
     const {open}=this.state
@@ -99,24 +83,7 @@ class HeadCard extends React.Component{
     })
   }
 
-  setModal2Visible(modal2Visible) {
-    this.setState({ modal2Visible });
-  }
-  setModal3Visible(modal3Visible) {
-    this.setState({ modal3Visible });
-  }
-  setModal4Visible(modal4Visible) {
-    this.setState({ modal4Visible });
-  }
-  setModal5Visible(modal5Visible) {
-    this.setState({ modal5Visible });
-  }
-  setModal6Visible(modal6Visible) {
-    this.setState({ modal6Visible });
-  }
-  setModal7Visible(modal7Visible) {
-    this.setState({ modal7Visible });
-  }
+   
 
   handleChange(e){
       const {name, value}=e.target
@@ -134,26 +101,15 @@ class HeadCard extends React.Component{
         </AvatarBox>
         <PostBox>
           <Item>
-            <svg viewBox="0 0 20.8 13" width="40" height="35" fill="black">
+            <svg viewBox="0 0 20.8 13" width="40" height="35" fill="black"  >
               <path d="M.1 13h2.8l.9-3h4.7l.8 3h2.9L7.7 0h-3L.1 13zm6-10.1l2 5.1H4.2l1.9-5.1zM20 10V6c0-1.1-.2-1.9-1-2.3-.7-.5-1.7-.7-2.7-.7-1.6 0-2.7.4-3.4 1.2-.4.5-.6 1.2-.7 2h2.4c.1-.4.2-.6.4-.8.2-.3.6-.4 1.2-.4.5 0 .9.1 1.2.2.3.1.4.4.4.8 0 .3-.2.5-.5.7-.2.1-.5.2-1 .2l-.9.1c-1 .1-1.7.3-2.2.6-.9.5-1.4 1.3-1.4 2.5 0 .9.3 1.6.8 2 .6.5 1.3.9 2.2.9.7 0 1.2-.3 1.7-.6.4-.2.8-.6 1.2-.9 0 .2 0 .4.1.6 0 .2.1.8.2 1h2.7v-.8c-.1-.1-.3-.2-.4-.3.1-.3-.3-1.7-.3-2zm-2.2-1.1c0 .8-.3 1.4-.7 1.7-.4.3-1 .5-1.5.5-.3 0-.6-.1-.9-.3-.2-.2-.4-.5-.4-.9 0-.5.2-.8.6-1 .2-.1.6-.2 1.1-.3l.6-.1c.3-.1.5-.1.7-.2.2-.1.3-.1.5-.2v.8z">
               </path>
             </svg>
             <p>Text</p>
-            <Modal
-                title="Title"
-                style={{ top: "20" }}
-                visible={this.state.modal1Visible}
-                onOk={() => this.setModal1Visible(false)}
-
-                onCancel={() => this.setModal1Visible(false)}
-              >
-                <input type="text" placeholder="Your text here" name="text" value={text} onChange={this.handleChange}/>
-                <p>Your Text Here</p>
-                <p>some contents...</p>
-              </Modal>
+             
           </Item>
           <Item  >
-            <svg viewBox="0 0 17 15" width="40" height="35" fill="#ff492f">
+            <svg viewBox="0 0 17 15" width="40" height="35" fill="#ff492f" onClick={this.togglePhoto}>
               <path d="M14.6 1h-2.7l-.6-1h-6l-.6 1H2.4C1.1 1 0 2 0 3.3v9.3C0 13.9 1.1 15 2.4 15h12.2c1.3 0 2.4-1.1 2.4-2.4V3.3C17 2 15.9 1 14.6 1zM8.3 13.1c-2.9 0-5.2-2.3-5.2-5.1s2.3-5.1 5.2-5.1c2.9 0 5.2 2.3 5.2 5.1s-2.3 5.1-5.2 5.1zm5.9-8.3c-.6 0-1.1-.5-1.1-1.1 0-.6.5-1.1 1.1-1.1s1.1.5 1.1 1.1c0 .6-.5 1.1-1.1 1.1zm-10 3.1c0 1.2.5 2.2 1.3 3 0-.2 0-.4-.1-.6 0-2.2 1.8-4 4.1-4 1.1 0 2 .4 2.8 1.1-.3-2-2-3.4-4-3.4-2.2-.1-4.1 1.7-4.1 3.9z">
               </path>
             </svg>
@@ -166,17 +122,7 @@ class HeadCard extends React.Component{
               </path>
             </svg>
             <p>Quote</p>
-            <Modal
-                title="Quote"
-                style={{ top: 20 }}
-                visible={this.state.modal3Visible}
-                onOk={() => this.setModal3Visible(false)}
-                onCancel={() => this.setModal3Visible(false)}
-              >
-                
-                <p>some contents...</p>
-                <p>--Source</p>
-              </Modal>
+             
           </Item>
           <Item>
             <svg viewBox="0 0 17 17" width="40" height="35" fill="#00b8ff">
@@ -184,17 +130,7 @@ class HeadCard extends React.Component{
               </path>
             </svg>
             <p>Link</p>
-            <Modal
-                title="Link"
-                style={{ top: 20 }}
-                visible={this.state.modal4Visible}
-                onOk={() => this.setModal4Visible(false)}
-                onCancel={() => this.setModal4Visible(false)}
-              >
-                
-                <p>Link</p>
-                <p>some contents...</p>
-              </Modal>
+            
           </Item>
           <Item>
             <svg viewBox="0 0 18.7 17" width="40" height="35" fill="#00b8ff">
@@ -202,17 +138,7 @@ class HeadCard extends React.Component{
               </path>
             </svg>
             <p>Chat</p>
-            <Modal
-                title="We Chat"
-                style={{ top: 20 }}
-                visible={this.state.modal5Visible}
-                onOk={() => this.setModal5Visible(false)}
-                onCancel={() => this.setModal5Visible(false)}
-              >
-                
-                <p>some contents...</p>
-                <p>some contents...</p>
-              </Modal>
+            
           </Item>
           <Item>
             <svg viewBox="0 0 19 16" width="40" height="35" fill="#7c5cff">
@@ -220,17 +146,7 @@ class HeadCard extends React.Component{
               </path>
             </svg>
             <p>Audio</p>
-            <Modal
-                title="Audio"
-                style={{ top: 20 }}
-                visible={this.state.modal6Visible}
-                onOk={() => this.setModal6Visible(false)}
-                onCancel={() => this.setModal6Visible(false)}
-              >
-                
-                <p>some contents...</p>
-                <p>some contents...</p>
-              </Modal>
+             
           </Item>
           <Item>
             <svg viewBox="0 0 16 15" width="40" height="35" fill="#ff62ce">
@@ -238,17 +154,7 @@ class HeadCard extends React.Component{
               </path>
             </svg>
             <p>Video</p>
-            <Modal
-                title="Video"
-                style={{ top: 20 }}
-                visible={this.state.modal7Visible}
-                onOk={() => this.setModal7Visible(false)}
-                onCancel={() => this.setModal7Visible(false)}
-              >
-                <p> <PhotoPost/> </p>
-                
-                <p>some contents...</p>
-              </Modal>
+             
           </Item>
         </PostBox>
       </CardWrapper>

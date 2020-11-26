@@ -15,6 +15,7 @@ export class AppContextProvider extends Component {
       posting: false,
       posts: [],
       like: false,
+      activeUser:"",
     };
     this.addPost = this.addPost.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -40,7 +41,7 @@ export class AppContextProvider extends Component {
   
 
   addPost(text) {
-    const { post, currentUser } = this.state;
+    const { post, currentUser,activeUser } = this.state;
     console.log(text);
     // this.setState({
     //   post: [post, newPost],
@@ -61,7 +62,7 @@ export class AppContextProvider extends Component {
     axios
       .post(`https://tumblr-server.herokuapp.com/posts`, {
         author_id: currentUser,
-        post_by: "monis",
+        post_by: activeUser.post_by,
         content: text,
         postType: "text",
         src:
@@ -76,12 +77,12 @@ export class AppContextProvider extends Component {
   }
 
   addPhoto(post, img) {
-    const { currentUser } = this.state;
+    const { currentUser,activeUser } = this.state;
     // console.log(img)
     axios
       .post(`https://tumblr-server.herokuapp.com/posts`, {
         author_id: currentUser,
-        post_by: "monis",
+        post_by: activeUser.post_by,
         content: img,
         postType: "image",
         src:
@@ -133,7 +134,9 @@ export class AppContextProvider extends Component {
       this.setState({
         currentUser: user.id,
         isAuth: true,
+        activeUser:user
       });
+
       history.push("/dashboard");
     } else {
       this.setState({
