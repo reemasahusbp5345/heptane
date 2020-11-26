@@ -15,6 +15,7 @@ export class AppContextProvider extends Component {
       posting: false,
       posts: [],
       like: false,
+      activeUser:"",
     };
     this.addPost = this.addPost.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -37,8 +38,10 @@ export class AppContextProvider extends Component {
     });
   }
 
+  
+
   addPost(text) {
-    const { post, currentUser } = this.state;
+    const { post, currentUser,activeUser } = this.state;
     console.log(text);
     // this.setState({
     //   post: [post, newPost],
@@ -59,7 +62,7 @@ export class AppContextProvider extends Component {
     axios
       .post(`https://tumblr-server.herokuapp.com/posts`, {
         author_id: currentUser,
-        post_by: "monis",
+        post_by: activeUser.post_by,
         content: text,
         postType: "text",
         src:
@@ -74,12 +77,12 @@ export class AppContextProvider extends Component {
   }
 
   addPhoto(post, img) {
-    const { currentUser } = this.state;
+    const { currentUser,activeUser } = this.state;
     // console.log(img)
     axios
       .post(`https://tumblr-server.herokuapp.com/posts`, {
         author_id: currentUser,
-        post_by: "monis",
+        post_by: activeUser.post_by,
         content: img,
         postType: "image",
         src:
@@ -103,7 +106,7 @@ export class AppContextProvider extends Component {
 
   // handling onSubmit logic of form
   // handling changes inside inputs
-  async handleSubmit(e) {
+  async handleSubmit(e, history) {
     e.preventDefault();
 
     this.setState({
@@ -131,7 +134,9 @@ export class AppContextProvider extends Component {
       this.setState({
         currentUser: user.id,
         isAuth: true,
+        activeUser:user
       });
+
       history.push("/dashboard");
     } else {
       this.setState({
@@ -148,7 +153,7 @@ export class AppContextProvider extends Component {
     });
   }
 
-  async handleSignUp(e, email, username, password) {
+  async handleSignUp(e, email, username, password, history) {
     e.preventDefault();
 
     this.setState({
@@ -157,14 +162,16 @@ export class AppContextProvider extends Component {
 
     await axios
       .get("https://tumblr-server.herokuapp.com/users")
-      .then((res) => this.checkData(res.data, email, username, password))
+      .then((res) =>
+        this.checkData(res.data, email, username, password, history)
+      )
       .catch((err) => console.log(err));
     this.setState({
       isPageLoading: false,
     });
   }
 
-  async checkData(data, email, username, password) {
+  async checkData(data, email, username, password, history) {
     // checking if email is present in database
     // if it exists then we will check if username exists
     let user = data.filter(
@@ -186,7 +193,7 @@ export class AppContextProvider extends Component {
             currentUser: res.data.id,
             isAuth: true,
           });
-          // history.push("/dashboard")
+          history.push("/dashboard")
         })
         .catch((err) => console.log(err));
     }
