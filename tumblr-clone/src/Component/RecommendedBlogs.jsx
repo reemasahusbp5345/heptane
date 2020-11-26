@@ -41,28 +41,54 @@ const userData = [
   },
 ];
 
-const BlogCard = ({ img, head, content }) => {
-  return (
-    <CardWrapper>
-      <div>
-        <img
-          src={img}
-          alt="userImg"
-          style={{ height: "45px", width: "45px" }}
-        />
-      </div>
-      <div>
-        <div style={{ fontWeight: 600 }}>{head}</div>
-        <div>{content}</div>
-      </div>
-      <div style={{ marginLeft: "auto", marginTop: "9px", fontWeight: 600 }}>
-        <a href="https://www.google.com" style={{ textDecoration: "none" }}>
-          Follow
-        </a>
-      </div>
-    </CardWrapper>
-  );
-};
+class BlogCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFollow: false,
+    };
+    this.handleFollow = this.handleFollow.bind(this);
+  }
+
+  handleFollow() {
+    const { isFollow } = this.state;
+    this.setState({
+      isFollow: !isFollow,
+    });
+  }
+
+  render() {
+    const { img, head, content } = this.props;
+    const { isFollow } = this.state;
+    return (
+      <CardWrapper>
+        <div>
+          <img
+            src={img}
+            alt="userImg"
+            style={{ height: "45px", width: "45px" }}
+          />
+        </div>
+        <div>
+          <div style={{ fontWeight: 600 }}>{head}</div>
+          <div>{content}</div>
+        </div>
+        <div
+          style={{
+            marginLeft: "auto",
+            marginTop: "9px",
+            fontWeight: 600,
+            color: "#1890ff",
+          }}
+        >
+          <div onClick={this.handleFollow}>
+            {isFollow ? "Following" : "Follow"}
+          </div>
+        </div>
+      </CardWrapper>
+    );
+  }
+}
 
 class RecommendedBlogs extends React.Component {
   render() {
