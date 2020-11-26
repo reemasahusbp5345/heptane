@@ -5,7 +5,7 @@ import { FooterLinks } from "../Landing/FooterLinks";
 import { Button } from "../../Component/LandingPageComponents/Button";
 import { Input } from "../../Component/LandingPageComponents/Input";
 import { AppContext } from "../../Context/AppContext";
-import {Redirect} from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 
 const LoginWrap = styled.div`
   height: 100vh;
@@ -62,11 +62,12 @@ export class Login extends Component {
       password,
       currentUser,
       redirectTo,
-      isAuth
+      isAuth,
     } = this.context;
     return (
       <div>
-         { !currentUser ? <LoginWrap>
+        {!currentUser ? (
+          <LoginWrap>
             <HomeNav login={false} signup={true} />
             <div className="mid">
               <img src={process.env.PUBLIC_URL + "/tumblr.png"} alt="" />
@@ -91,7 +92,10 @@ export class Login extends Component {
             <div className="bottom">
               <FooterLinks />
             </div>
-          </LoginWrap> : <Redirect to="/dashboard" /> }
+          </LoginWrap>
+        ) : (
+          <Redirect to="/dashboard" />
+        )}
       </div>
     );
   }
