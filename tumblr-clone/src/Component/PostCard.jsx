@@ -18,20 +18,17 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
-
 const AvatarBox = styled.div`
   margin-top: 10px;
   height: 70px;
   width: 70px;
   margin: 4px;
-
   & img {
     height: 70px;
     width: 70px;
     border-radius: 5px;
   }
 `;
-
 const PostBox = styled.div`
   border: 1px solid black;
   background-color: white;
@@ -50,14 +47,12 @@ const PostBoxHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
   & div {
     display: flex;
     flex-direction: row;
     padding: 6px;
     margin: 2px;
     font-weight: 600;
-
     & a {
       margin-top: 7px;
     }
@@ -68,20 +63,17 @@ const PostBoxContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 5px 5px;
-
   & div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     margin: 5px 7px;
-
     & a {
       margin-top: 5px;
       font-weight: 600;
     }
   }
 `;
-
 const PostBoxFooter = styled.div`
   position: relative;
   height: 50px;
@@ -90,11 +82,9 @@ const PostBoxFooter = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
   & div {
     margin: 7px;
   }
-
   & div > * {
     padding: 5px;
   }
