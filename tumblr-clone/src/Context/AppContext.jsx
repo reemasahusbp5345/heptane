@@ -42,7 +42,7 @@ export class AppContextProvider extends Component {
 
   addPost(text) {
     const { post, currentUser,activeUser } = this.state;
-    console.log(text);
+    console.log(activeUser);
     // this.setState({
     //   post: [post, newPost],
     // });
@@ -62,7 +62,7 @@ export class AppContextProvider extends Component {
     axios
       .post(`https://tumblr-server.herokuapp.com/posts`, {
         author_id: currentUser,
-        post_by: activeUser.post_by,
+        post_by: activeUser.username,
         content: text,
         postType: "text",
         src:
@@ -79,19 +79,55 @@ export class AppContextProvider extends Component {
   addPhoto(post, img) {
     const { currentUser,activeUser } = this.state;
     // console.log(img)
-    axios
-      .post(`https://tumblr-server.herokuapp.com/posts`, {
-        author_id: currentUser,
-        post_by: activeUser.post_by,
-        content: img,
-        postType: "image",
-        src:
-          "https://assets.tumblr.com/images/default_avatar/sphere_open_64.png",
-        numberOfNotes: 0,
-        hashtags: ["#first_post", "tumblr"],
-        isFollow: false,
-        isLike: false,
+    console.log(activeUser.username)
+    // let payload={
+    //       "author_id":currentUser,
+    //       "post_by": activeUser.username,
+    //       "content": img ,
+    //       "postType": "image",
+    //       "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
+    //       "numberOfNotes": 0,
+    //       "hashtags": [
+    //         "#first_post",
+    //         "tumblr"
+    //       ],
+    //      "isFollow":false,
+    //      "isLike":false
+    //   }
+    // axios
+    //   .post(`https://tumblr-server.herokuapp.com/posts`, {
+    //     "author_id":currentUser,
+    //     "post_by":  "",
+    //     "content": img ,
+    //     "postType": "image",
+    //     "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
+    //     "numberOfNotes": 0,
+    //     "hashtags": [
+    //       "#first_post",
+    //       "tumblr"
+    //     ],
+    //    "isFollow":false,
+    //    "isLike":false
+    //   })
+      axios({
+        method: "post",
+        url: "https://tumblr-server.herokuapp.com/posts",
+        data: {
+          "author_id":currentUser,
+        "post_by":  activeUser.username,
+        "content": img ,
+        "postType": "image",
+        "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
+        "numberOfNotes": 0,
+        "hashtags": [
+          "#first_post",
+          "tumblr"
+        ],
+       "isFollow":false,
+       "isLike":false
+        },
       })
+
       .then((res) => alert("succes"))
       .catch((err) => alert("err"));
   }
@@ -136,7 +172,7 @@ export class AppContextProvider extends Component {
         isAuth: true,
         activeUser:user
       });
-
+      console.log(this.state.activeUser)
       history.push("/dashboard");
     } else {
       this.setState({

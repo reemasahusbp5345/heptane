@@ -69,7 +69,7 @@ const Close = styled.div`
         background-color:#bfbfbf
     }
 `
-export  class Card extends Component {
+export  class PhotoCard extends Component {
 
     constructor(props){
         super(props)
@@ -131,4 +131,4 @@ handlePost(e){
     }
 }
 
-Card.contextType = AppContext
+PhotoCard.contextType = AppContext

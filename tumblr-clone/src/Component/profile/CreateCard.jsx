@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { PhotoCard } from './PhotoCard'
+ 
+import { ProfileCard } from './ProfileCard'
 
-const Modal = styled.div`
+const ProfileModal = styled.div`
     height:100vh;
     width:100vw;
     position:absolute;
@@ -14,16 +15,16 @@ const Modal = styled.div`
 `
 
 
-export  class CreatePost extends Component {
+export  class CreateCard extends Component {
     constructor(props){
         super(props)
     }
     render() {
-        const {handleModal} = this.props
+        const {handleToggle} = this.props
         return (
-            <Modal >
-                <PhotoCard  handleModal={handleModal} />
-            </Modal>
+            <ProfileModal >
+                <ProfileCard  handleToggle={handleToggle} />
+            </ProfileModal>
         )
     }
 }
