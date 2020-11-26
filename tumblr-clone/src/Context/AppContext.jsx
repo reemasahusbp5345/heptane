@@ -155,7 +155,7 @@ export class AppContextProvider extends Component {
         isAuth: true,
         activeUser: user
       });
-
+      console.log(this.state.activeUser)
       history.push("/dashboard");
     } else {
       this.setState({
