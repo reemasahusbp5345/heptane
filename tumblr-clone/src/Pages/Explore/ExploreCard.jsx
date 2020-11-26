@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { RecommendedBlogs } from "../../Component/RecommendedBlogs";
 import Icon from "@mdi/react";
 import { mdiHeartOutline, mdiReplyOutline, mdiDotsHorizontal } from "@mdi/js";
+import { render } from "react-dom";
 
 const PostBox = styled.div`
   border: 1px solid black;
@@ -12,6 +13,7 @@ const PostBox = styled.div`
   // height: auto;
   width: 250px;
   margin: 4px;
+  padding: 2px;
 `;
 
 const PostBoxContent = styled.div`
@@ -53,40 +55,74 @@ const PostBoxFooter = styled.div`
   }
 `;
 
-export const ExploreCard = ({ height }) => {
-  return (
-    <div>
-      {/* Main Card Content */}
-      <PostBox style={{ height: height }}>
-        <PostBoxContent>
-          <div>
-            <img src="https://via.placeholder.com/30" alt="usernameAvatar" />
-            <div>username</div>
-            <a href="https://www.google.com" style={{ textDecoration: "none" }}>
-              Follow
-            </a>
-            <Icon
-              path={mdiDotsHorizontal}
-              title="heart"
-              size={1}
-              style={{ marginLeft: "20%", marginTop: "5px" }}
-            />
-          </div>
-          <div style={{ width: "40px", objectFit: "fill" }}>
-            <img src="https://via.placeholder.com/250" alt="usernameAvatar" />
-          </div>
-          <div>Source</div>
-        </PostBoxContent>
+export class ExploreCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFollow: false,
+    };
+    this.handleFollow = this.handleFollow.bind(this);
+  }
 
-        {/* Card Footer */}
-        <PostBoxFooter>
-          <div>3473 notes</div>
-          <div>
-            <Icon path={mdiReplyOutline} title="reblog" size={1} />
-            <Icon path={mdiHeartOutline} title="heart" size={1} />
-          </div>
-        </PostBoxFooter>
-      </PostBox>
-    </div>
-  );
-};
+  handleFollow() {
+    const { isFollow } = this.state;
+    this.setState({
+      isFollow: !isFollow,
+    });
+  }
+
+  render() {
+    const { avatar, username, post } = this.props;
+    const { isFollow } = this.state;
+    return (
+      <div>
+        {/* Main Card Content */}
+        <PostBox>
+          <PostBoxContent>
+            <div>
+              <img
+                src={avatar}
+                alt="usernameAvatar"
+                style={{ height: "45px", width: "45px", borderRadius: "5px" }}
+              />
+              <div style={{ fontWeight: "600" }}>{username}</div>
+              <div
+                onClick={this.handleFollow}
+                style={{
+                  marginLeft: "auto",
+                  marginTop: "5px",
+                  fontWeight: 600,
+                  color: "#1890ff",
+                }}
+              >
+                {isFollow ? "Following" : "Follow"}
+              </div>
+              <Icon
+                path={mdiDotsHorizontal}
+                title="heart"
+                size={1}
+                style={{ marginLeft: "20%", marginTop: "5px" }}
+              />
+            </div>
+            <div style={{ width: "40px", objectFit: "fill" }}>
+              <img
+                src={post}
+                alt="usernameAvatar"
+                style={{ height: "295px", width: "245px", borderRadius: "5px" }}
+              />
+            </div>
+          </PostBoxContent>
+
+          {/* Card Footer */}
+          <PostBoxFooter>
+            <div></div>
+            <div>
+              <Icon path={mdiReplyOutline} title="reblog" size={1.5} />
+              <Icon path={mdiHeartOutline} title="heart" size={1.5} />
+            </div>
+          </PostBoxFooter>
+        </PostBox>
+      </div>
+    );
+  }
+}
