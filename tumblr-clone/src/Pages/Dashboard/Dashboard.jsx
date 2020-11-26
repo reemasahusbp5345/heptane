@@ -5,46 +5,57 @@ import ReactDOM from "react-dom";
 // import { Layout } from "antd";
 import { HeadCard } from "../../Component/HeadCard";
 import { PostCard } from "../../Component/PostCard";
-import {RecommendedBlogs} from "../../Component/RecommendedBlogs"
-import {Radar} from "../../Component/Radar"
+import { RecommendedBlogs } from "../../Component/RecommendedBlogs";
+import { Radar } from "../../Component/Radar";
 import styled from "styled-components";
 import { AppContext } from "../../Context/AppContext";
-const Layout=styled.div`
-  display:flex;
-  background:#001935;
+const Layout = styled.div`
+  display: flex;
+  background: #001935;
 `;
-const Content=styled.div`
-  flex:2;
+const Content = styled.div`
+  flex: 2;
 `;
-const Sider=styled.div`
-  flex:1;
+const Sider = styled.div`
+  flex: 1;
 `;
 // const {Sider, Content } = Layout;
 export class Dashboard extends React.Component {
-  constructor(props){
-    super(props)
-    this.state={
-    }
-     
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.feedCard = this.feedCard.bind(this);
   }
-   
-  render(){
-    
+
+  feedCard() {}
+  render() {
+    const { user, posts } = this.context;
+    console.log(posts);
     return (
       <div>
         <Layout>
-          <Content  >
+          <Content>
             <HeadCard />
-            <PostCard />
-           <PostCard/>
+            {posts?.map((_, index, a) => (
+              <PostCard
+                key={index}
+                id={a[a.length - 1 - index].id}
+                postImgUrl={a[a.length - 1 - index].content}
+                username={a[a.length - 1 - index].post_by}
+                avatarUrl={a[a.length - 1 - index].src}
+                isFollow={a[a.length - 1 - index].isFollow}
+                isLike={a[a.length - 1 - index].isLike}
+                // onToggle={this.handleToggle}
+              />
+            ))}
           </Content>
-          <Sider  >
-            <RecommendedBlogs/>
-            <Radar/>
-            </Sider>
+          <Sider>
+            <RecommendedBlogs />
+            <Radar />
+          </Sider>
         </Layout>
       </div>
     );
   }
-};
-Dashboard.contextType=AppContext
+}
+Dashboard.contextType = AppContext;
