@@ -9,8 +9,6 @@ import { RecommendedBlogs } from "../../Component/RecommendedBlogs";
 import { Radar } from "../../Component/Radar";
 import styled from "styled-components";
 import { AppContext } from "../../Context/AppContext";
-import Axios from "axios";
-import { TextContentCard } from "../../Component/TextContentCard";
 const Layout = styled.div`
   display: flex;
   background: #001935;
@@ -25,29 +23,31 @@ const Sider = styled.div`
 export class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [],
-    };
+    this.state = {};
     this.feedCard = this.feedCard.bind(this);
   }
+
   feedCard() {}
   render() {
     const { user, posts } = this.context;
-    // console.log(posts[4].postType );
+    console.log(posts);
     return (
       <div>
         <Layout>
           <Content>
             <HeadCard />
-            {/* {posts?.map((item) => (
-            
+            {posts?.map((_, index, a) => (
               <PostCard
-                id={item.id}
-                postImgUrl={item.content}
-                username={item.post_by}
-                avatarUrl={item.src}
+                key={index}
+                id={a[a.length - 1 - index].id}
+                postImgUrl={a[a.length - 1 - index].content}
+                username={a[a.length - 1 - index].post_by}
+                avatarUrl={a[a.length - 1 - index].src}
+                isFollow={a[a.length - 1 - index].isFollow}
+                isLike={a[a.length - 1 - index].isLike}
+                // onToggle={this.handleToggle}
               />
-            ))} */}
+            ))}  
              
               {/* {posts.filter((item)=>{return item.postType==="image"}).map((item)=>
                  <PostCard
@@ -67,7 +67,7 @@ export class Dashboard extends React.Component {
                />
               )}  */}
 
-              {posts?.map((item)=>
+              {/* {posts?.map((item)=>
                 {if(item.postType==="image"){
                   <PostCard
                   id={item.id}
@@ -88,6 +88,7 @@ export class Dashboard extends React.Component {
               )}
             
             
+            ))} */}
           </Content>
           <Sider>
             <RecommendedBlogs />
