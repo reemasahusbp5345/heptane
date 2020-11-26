@@ -9,15 +9,18 @@ import { RecommendedBlogs } from "../../Component/RecommendedBlogs";
 import { Radar } from "../../Component/Radar";
 import styled from "styled-components";
 import { AppContext } from "../../Context/AppContext";
+import { TextContentCard } from "../../Component/TextContentCard";
 const Layout = styled.div`
   display: flex;
   background: #001935;
 `;
 const Content = styled.div`
-  flex: 2;
+  flex: 1.3;
+  margin-left: "100px";
 `;
 const Sider = styled.div`
   flex: 1;
+  // margin-left: "400px";
 `;
 // const {Sider, Content } = Layout;
 export class Dashboard extends React.Component {
@@ -26,7 +29,6 @@ export class Dashboard extends React.Component {
     this.state = {};
     this.feedCard = this.feedCard.bind(this);
   }
-
   feedCard() {}
   render() {
     const { user, posts } = this.context;
@@ -36,7 +38,7 @@ export class Dashboard extends React.Component {
         <Layout>
           <Content>
             <HeadCard />
-            {posts?.map((_, index, a) => (
+            {/* {posts?.map((_, index, a) => (
               <PostCard
                 key={index}
                 id={a[a.length - 1 - index].id}
@@ -47,48 +49,41 @@ export class Dashboard extends React.Component {
                 isLike={a[a.length - 1 - index].isLike}
                 // onToggle={this.handleToggle}
               />
-            ))}  
-             
-              {/* {posts.filter((item)=>{return item.postType==="image"}).map((item)=>
-                 <PostCard
-                 id={item.id}
-                 postImgUrl={item.content}
-                 username={item.post_by}
-                 avatarUrl={item.src}
-               />
-              )} 
-              
-              {posts.filter((item)=>{return item.postType==="text"}).map((item)=>
-                 <TextContentCard
-                 id={item.id}
-                 postImgUrl={item.content}
-                 username={item.post_by}
-                 avatarUrl={item.src}
-               />
-              )}  */}
-
-              {/* {posts?.map((item)=>
-                {if(item.postType==="image"){
-                  <PostCard
-                  id={item.id}
-                  postImgUrl={item.content}
-                  username={item.post_by}
-                  avatarUrl={item.src}
-                />
+            ))}   */}
+            {posts
+              ?.map((item) => {
+                if (item.postType == "image") {
+                  return (
+                    <PostCard
+                      key={item.id}
+                      id={item.id}
+                      postImgUrl={item.content}
+                      username={item.post_by}
+                      avatarUrl={item.src}
+                      isFollow={item.isFollow}
+                      isLike={item.isLike}
+                      notes={item.numberOfNotes}
+                      hashtags={item.hashtags}
+                      postContent={item.postContent}
+                    />
+                  );
+                } else {
+                  return (
+                    <TextContentCard
+                      key={item.id}
+                      id={item.id}
+                      postText={item.content}
+                      username={item.post_by}
+                      avatarUrl={item.src}
+                      isFollow={item.isFollow}
+                      isLike={item.isLike}
+                      notes={item.numberOfNotes}
+                      hashtags={item.hashtags}
+                    />
+                  );
                 }
-              else{
-                <TextContentCard
-                id={item.id}
-                postImgUrl={item.content}
-                username={item.post_by}
-                avatarUrl={item.src}
-              />
-              }}
-                
-              )}
-            
-            
-            ))} */}
+              })
+              .reverse()}
           </Content>
           <Sider>
             <RecommendedBlogs />

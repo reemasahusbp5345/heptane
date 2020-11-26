@@ -96,6 +96,9 @@ class PostCard extends React.Component {
     this.state = {
       isFollow: this.props.isFollow,
       isLike: this.props.isLike,
+      notes: Number(this.props.notes),
+      hashtags: this.props.hashtags,
+      postContent: this.props.postContent,
     };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleLike = this.handleLike.bind(this);
@@ -113,20 +116,34 @@ class PostCard extends React.Component {
   }
 
   handleLike(id) {
-    const { isLike } = this.state;
-    Axios.patch(`https://tumblr-server.herokuapp.com/posts/${id}`, {
-      isLike: !isLike,
+    const { isLike, notes } = this.state;
+    var notesAdd = notes;
+    isLike ? (notesAdd = notes - 1) : (notesAdd = notes + 1);
+
+    Axios({
+      method: "patch",
+      url: `https://tumblr-server.herokuapp.com/posts/${id}`,
+      data: {
+        isLike: !isLike,
+        numberOfNotes: notesAdd,
+      },
     });
+
+    // Axios.patch(`https://tumblr-server.herokuapp.com/posts/${id}`, {
+    //   isLike: !isLike,
+    //   numberOfNotes: notes,
+    // });
 
     this.setState({
       isLike: !isLike,
+      notes: notesAdd,
     });
   }
 
   render() {
     const { id, postImgUrl, username, avatarUrl } = this.props;
     const { handleToggle, handleLike } = this;
-    const { isLike } = this.state;
+    const { isLike, notes, hashtags } = this.state;
     return (
       <CardWrapper>
         {/* Card Header */}
@@ -161,13 +178,30 @@ class PostCard extends React.Component {
               />
             </div>
             <div>Content</div>
-            <div>Source</div>
-            <div style={{ color: "green", fontWeight: "600" }}>Recommended</div>
+            <div>
+              <a href="www.tumblr.com" style={{ textDecoration: "none" }}>
+                Source
+              </a>
+            </div>
+            <div>
+              <div
+                style={{
+                  color: "green",
+                  fontWeight: "600",
+                  marginLeft: "-2px",
+                }}
+              >
+                Recommended
+              </div>
+              {hashtags?.map((item) => {
+                return <div>{item}</div>;
+              })}
+            </div>
           </PostBoxContent>
 
           {/* Card Footer */}
           <PostBoxFooter>
-            <div>3473 notes</div>
+            <div>{notes} notes</div>
             <div>
               <Icon path={mdiShareVariantOutline} title="share" size={1.5} />
               <Icon path={mdiMessageReply} title="reply" size={1.5} />

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
 export const AppContext = React.createContext();
-
 export class AppContextProvider extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +13,7 @@ export class AppContextProvider extends Component {
       posting: false,
       posts: [],
       like: false,
-      activeUser:"",
+      activeUser: "",
     };
     this.addPost = this.addPost.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -27,9 +25,7 @@ export class AppContextProvider extends Component {
     this.addPhoto = this.addPhoto.bind(this);
     this.handleLike = this.handleLike.bind(this);
   }
-
   handleLike() {}
-
   componentDidMount() {
     axios.get(`https://tumblr-server.herokuapp.com/posts`).then((res) => {
       this.setState({
@@ -37,12 +33,9 @@ export class AppContextProvider extends Component {
       });
     });
   }
-
-  
-
   addPost(text) {
-    const { post, currentUser,activeUser } = this.state;
-    console.log(text);
+    const { post, currentUser, activeUser } = this.state;
+    console.log(activeUser);
     // this.setState({
     //   post: [post, newPost],
     // });
@@ -62,7 +55,7 @@ export class AppContextProvider extends Component {
     axios
       .post(`https://tumblr-server.herokuapp.com/posts`, {
         author_id: currentUser,
-        post_by: activeUser.post_by,
+        post_by: activeUser.username,
         content: text,
         postType: "text",
         src:
@@ -75,27 +68,58 @@ export class AppContextProvider extends Component {
       .then((res) => alert("succes"))
       .catch((err) => alert("err"));
   }
-
   addPhoto(post, img) {
-    const { currentUser,activeUser } = this.state;
+    const { currentUser, activeUser } = this.state;
     // console.log(img)
-    axios
-      .post(`https://tumblr-server.herokuapp.com/posts`, {
+    console.log(activeUser.username);
+    // let payload={
+    //       "author_id":currentUser,
+    //       "post_by": activeUser.username,
+    //       "content": img ,
+    //       "postType": "image",
+    //       "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
+    //       "numberOfNotes": 0,
+    //       "hashtags": [
+    //         "#first_post",
+    //         "tumblr"
+    //       ],
+    //      "isFollow":false,
+    //      "isLike":false
+    //   }
+    // axios
+    //   .post(`https://tumblr-server.herokuapp.com/posts`, {
+    //     "author_id":currentUser,
+    //     "post_by":  "",
+    //     "content": img ,
+    //     "postType": "image",
+    //     "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
+    //     "numberOfNotes": 0,
+    //     "hashtags": [
+    //       "#first_post",
+    //       "tumblr"
+    //     ],
+    //    "isFollow":false,
+    //    "isLike":false
+    //   })
+    axios({
+      method: "post",
+      url: "https://tumblr-server.herokuapp.com/posts",
+      data: {
         author_id: currentUser,
-        post_by: activeUser.post_by,
+        post_by: activeUser.username,
         content: img,
         postType: "image",
         src:
-          "https://assets.tumblr.com/images/default_avatar/sphere_open_64.png",
+          "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
         numberOfNotes: 0,
         hashtags: ["#first_post", "tumblr"],
         isFollow: false,
         isLike: false,
-      })
+      },
+    })
       .then((res) => alert("succes"))
       .catch((err) => alert("err"));
   }
-
   // handling changes inside inputs
   handleChange(e) {
     const { name, value } = e.target;
@@ -103,12 +127,10 @@ export class AppContextProvider extends Component {
       [name]: value,
     });
   }
-
   // handling onSubmit logic of form
   // handling changes inside inputs
   async handleSubmit(e, history) {
     e.preventDefault();
-
     this.setState({
       isPageLoading: true,
     });
@@ -116,12 +138,10 @@ export class AppContextProvider extends Component {
       .get("https://tumblr-server.herokuapp.com/users")
       .then((res) => this.saveData(res.data, history))
       .catch((err) => console.log(err));
-
     this.setState({
       isPageLoading: false,
     });
   }
-
   saveData(data, history) {
     // checking if email is present in database
     // if it exists then we will check if pasword is corect
@@ -129,14 +149,13 @@ export class AppContextProvider extends Component {
       (user) =>
         user.email === this.state.email && user.password === this.state.password
     );
-
     if (user !== undefined) {
       this.setState({
         currentUser: user.id,
         isAuth: true,
-        activeUser:user
+        activeUser: user,
       });
-
+      console.log(this.state.activeUser);
       history.push("/dashboard");
     } else {
       this.setState({
@@ -144,7 +163,6 @@ export class AppContextProvider extends Component {
       });
     }
   }
-
   // function to redirect
   redirectTo(history, path) {
     history.push(path);
@@ -152,14 +170,11 @@ export class AppContextProvider extends Component {
       isAuth: false,
     });
   }
-
   async handleSignUp(e, email, username, password, history) {
     e.preventDefault();
-
     this.setState({
       isPageLoading: true,
     });
-
     await axios
       .get("https://tumblr-server.herokuapp.com/users")
       .then((res) =>
@@ -170,14 +185,12 @@ export class AppContextProvider extends Component {
       isPageLoading: false,
     });
   }
-
   async checkData(data, email, username, password, history) {
     // checking if email is present in database
     // if it exists then we will check if username exists
     let user = data.filter(
       (item) => item.username === username || email === item.email
     );
-
     if (user.length === 0) {
       await axios({
         method: "post",
@@ -193,12 +206,11 @@ export class AppContextProvider extends Component {
             currentUser: res.data.id,
             isAuth: true,
           });
-          history.push("/dashboard")
+          history.push("/dashboard");
         })
         .catch((err) => console.log(err));
     }
   }
-
   render() {
     const {
       isAuth,
@@ -209,7 +221,6 @@ export class AppContextProvider extends Component {
       posts,
       user,
     } = this.state;
-
     const {
       handleChange,
       handleSubmit,
