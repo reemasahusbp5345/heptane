@@ -46,7 +46,7 @@ const TextArea = styled.textarea`
     border:none
 `
 
-const Footer = styled.div`\
+const Footer = styled.div`
     display:flex;
     justify-content:space-between;
     padding:1rem 2rem
