@@ -85,7 +85,7 @@ export class SignUp extends Component {
                         <img src={process.env.PUBLIC_URL + '/tumblr.png'} alt=""/>
                         <p>Come for what you love. {'\n'}
                         Stay for what you discover.</p>
-                        <form onSubmit={ e => handleSignUp( e, email, username, password )}>
+                        <form onSubmit={ e => handleSignUp( e, email, username, password, this.props.history )}>
                             <Input handleChange={ e => this.handleChange(e) } value={email} name="email" type="email" placeholder="Enter Email" />
                             <Input handleChange={ e => this.handleChange(e) } value={username} name="username" type="text" placeholder="Enter Username" />
                             <Input handleChange={ e => this.handleChange(e) } value={password} name="password" type="password" placeholder="Enter Password" />

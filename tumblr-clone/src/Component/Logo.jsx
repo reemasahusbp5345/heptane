@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const LogoWrap = styled.div`
   width: 50px;
+  margin-top:5px;
 
   & svg {
     fill: white;

@@ -2,14 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 
 const SearchInput = styled.div`
-    width:100px;
+    width:480px;
     display:flex;
     justify-content:space-between;
     align-items:center;
     background-color:#3f51b5;
     border-radius:3px;
-    height:40px;
+    height:35px;
     background:#fff;
+    
 
     
     
@@ -18,9 +19,9 @@ const SearchInput = styled.div`
     }
     
     & input{
-        width:50%;
+        width:450px;
         border-radius:3px;
-        height:40px;
+        height:35px;
         border:none;
         color: #444;
         font-weight:bold;
@@ -30,12 +31,14 @@ const SearchInput = styled.div`
 
 export class Search extends React.Component {
     render() {
+        const { placeholder, type } = this.props
         return (
             <SearchInput>
-                <svg style={{width:"13px",height:"24px"}} viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                <svg width="18" height="18" viewBox="0 0 14 14" fill="#24282b">
+                    <path d="M1.676 5.7c0-2.2 1.873-4 4.042-4 2.268 0 4.043 1.8 4.043 4s-1.775 4-4.043 4c-2.169 0-4.042-1.8-4.042-4zm11.732 6.4L10.352 9c.69-.9 1.085-2.1 1.085-3.3 0-3.1-2.564-5.7-5.719-5.7C2.563 0 0 2.6 0 5.7s2.563 5.7 5.718 5.7c1.085 0 2.17-.4 3.057-.9l3.253 3.2c.197.2.493.3.789.3.296 0 .591-.1.789-.3.197-.2.394-.5.394-.8 0-.3-.296-.5-.592-.8z">
+                </path>
                 </svg>
-                <input placeholder="Search" type="text"/>
+                <input placeholder={placeholder} type={type}/>
             </SearchInput>
         )
     }
