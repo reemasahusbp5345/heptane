@@ -10,13 +10,15 @@ import {
 } from "@mdi/js";
 import { AppContext } from "../Context/AppContext";
 import Axios from "axios";
+import {Avatar} from './Avatar'
 
 const CardWrapper = styled.div`
   height: 600px;
-  width: 500px;
+  max-width: 540px;
   margin-left: 30%;
   display: flex;
-  flex-direction: row;
+  align-items: flex-start;
+  justify-content:space-between;
 `;
 const AvatarBox = styled.div`
   margin-top: 10px;
@@ -36,26 +38,32 @@ const PostBox = styled.div`
   border-radius: 5px;
   margin-top: 10px;
   height: 590px;
-  width: 500px;
+  max-width: 440px;
+  width: 100%;
   margin: 4px;
 `;
 const PostBoxHeader = styled.div`
-  position: relative;
+  /* position: relative;
   height: 50px;
   width: 415px;
-  top: 0px;
+  top: 0px; */
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  & div {
+
+  & div:first-child {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     padding: 6px;
     margin: 2px;
     font-weight: 600;
-    & a {
+    /* & a {
       margin-top: 7px;
-    }
+    } */
+  }
+
+  & svg{
+    /* padding: 6px; */
+    margin: 20px;
   }
 `;
 const PostBoxContent = styled.div`
@@ -96,6 +104,9 @@ class PostCard extends React.Component {
     this.state = {
       isFollow: this.props.isFollow,
       isLike: this.props.isLike,
+      notes: Number(this.props.notes),
+      hashtags: this.props.hashtags,
+      postContent: this.props.postContent,
     };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleLike = this.handleLike.bind(this);
@@ -113,26 +124,39 @@ class PostCard extends React.Component {
   }
 
   handleLike(id) {
-    const { isLike } = this.state;
-    Axios.patch(`https://tumblr-server.herokuapp.com/posts/${id}`, {
-      isLike: !isLike,
+    const { isLike, notes } = this.state;
+    var notesAdd = notes;
+    isLike ? (notesAdd = notes - 1) : (notesAdd = notes + 1);
+
+    Axios({
+      method: "patch",
+      url: `https://tumblr-server.herokuapp.com/posts/${id}`,
+      data: {
+        isLike: !isLike,
+        numberOfNotes: notesAdd,
+      },
     });
+
+    // Axios.patch(`https://tumblr-server.herokuapp.com/posts/${id}`, {
+    //   isLike: !isLike,
+    //   numberOfNotes: notes,
+    // });
 
     this.setState({
       isLike: !isLike,
+      notes: notesAdd,
     });
   }
 
   render() {
     const { id, postImgUrl, username, avatarUrl } = this.props;
     const { handleToggle, handleLike } = this;
-    const { isLike } = this.state;
+    const { isLike, notes, hashtags } = this.state;
     return (
       <CardWrapper>
         {/* Card Header */}
-        <AvatarBox>
-          <img src={avatarUrl} alt="avatar" />
-        </AvatarBox>
+        
+        <Avatar img={avatarUrl} />
 
         {/* Main Card Content */}
         <PostBox>
@@ -147,9 +171,7 @@ class PostCard extends React.Component {
                 {this.state.isFollow ? "Following" : "Follow"}
               </div>
             </div>
-            <div>
-              <Icon path={mdiDotsHorizontal} title="share" size={1} />
-            </div>
+              <svg viewBox="0 0 17.5 3.9" style={{transform:"rotate(0deg)"}} width="18" height="10" fill="var(--gray-65)"><path d="M17.5 1.9c0 1.1-.9 1.9-1.9 1.9-1.1 0-1.9-.9-1.9-1.9S14.5 0 15.6 0c1 0 1.9.9 1.9 1.9m-6.8 0c0 1.1-.9 1.9-1.9 1.9-1.1.1-2-.8-2-1.9 0-1 .9-1.9 2-1.9s1.9.9 1.9 1.9m-6.8 0c0 1.1-.9 2-2 2-1 0-1.9-.9-1.9-2S.9 0 1.9 0c1.1 0 2 .9 2 1.9"></path></svg>
           </PostBoxHeader>
           {/* Card Content */}
           <PostBoxContent>
@@ -161,13 +183,30 @@ class PostCard extends React.Component {
               />
             </div>
             <div>Content</div>
-            <div>Source</div>
-            <div style={{ color: "green", fontWeight: "600" }}>Recommended</div>
+            <div>
+              <a href="www.tumblr.com" style={{ textDecoration: "none" }}>
+                Source
+              </a>
+            </div>
+            <div>
+              <div
+                style={{
+                  color: "green",
+                  fontWeight: "600",
+                  marginLeft: "-2px",
+                }}
+              >
+                Recommended
+              </div>
+              {hashtags?.map((item) => {
+                return <div>{item}</div>;
+              })}
+            </div>
           </PostBoxContent>
 
           {/* Card Footer */}
           <PostBoxFooter>
-            <div>3473 notes</div>
+            <div>{notes} notes</div>
             <div>
               <Icon path={mdiShareVariantOutline} title="share" size={1.5} />
               <Icon path={mdiMessageReply} title="reply" size={1.5} />
