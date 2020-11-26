@@ -92,8 +92,8 @@ handlePost(e){
     const {post,img} =  this.state
     const {handleModal} = this.props
     const {addPhoto } = this.context
-     
-    addPhoto({post,img})
+    //  console.log(img)
+    addPhoto( post,img )
     {handleModal(e)}
 
 }
@@ -103,7 +103,7 @@ handlePost(e){
     render() {
         const {handleModal } = this.props
         const {post,img} = this.state
-        console.log(img)
+        
         return (
             <Container>
                 <Header >
@@ -111,17 +111,17 @@ handlePost(e){
                     <Close onClick={handleModal} style>✖</Close>
                 </Header>
                 <Body>
-                    <InfoBox>
+                    {/* <InfoBox>
                         <ProfilePic width = "44" />
                         <div style={{marginLeft:"14px",lineHeight:"1.5",fontSize:"1rem",fontWeight:600}}   >
                             <div>Ree</div>
                             
                         </div>
-                    </InfoBox>
+                    </InfoBox> */}
                     <TextArea name="post" value={post} rows="5" cols="50" placeholder="What do you want to talk about?" onChange={(e)=>this.handleChange(e)} />
                 </Body>
                 <Footer>
-                    <input ref={this.photo}  onChange={this.handleChange} name="img" type="file" />
+                    <input ref={this.photo} onChange={(e)=>this.handleChange(e)} name="img" type="file" />
                     {/* {img && <img src={img} width="30" />} */}
                     <Button onClick={this.handlePost}  disabled={post.length===0 && img===""?true:false} >POST</Button>
                 </Footer>

@@ -9,7 +9,6 @@ import { RecommendedBlogs } from "../../Component/RecommendedBlogs";
 import { Radar } from "../../Component/Radar";
 import styled from "styled-components";
 import { AppContext } from "../../Context/AppContext";
-import Axios from "axios";
 const Layout = styled.div`
   display: flex;
   background: #001935;
@@ -24,9 +23,7 @@ const Sider = styled.div`
 export class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [],
-    };
+    this.state = {};
     this.feedCard = this.feedCard.bind(this);
   }
 
@@ -39,16 +36,18 @@ export class Dashboard extends React.Component {
         <Layout>
           <Content>
             <HeadCard />
-            {posts?.map((item) => (
+            {posts?.map((_, index, a) => (
               <PostCard
-                id={item.id}
-                postImgUrl={item.content}
-                username={item.post_by}
-                avatarUrl={item.src}
+                key={index}
+                id={a[a.length - 1 - index].id}
+                postImgUrl={a[a.length - 1 - index].content}
+                username={a[a.length - 1 - index].post_by}
+                avatarUrl={a[a.length - 1 - index].src}
+                isFollow={a[a.length - 1 - index].isFollow}
+                isLike={a[a.length - 1 - index].isLike}
+                // onToggle={this.handleToggle}
               />
             ))}
-            <PostCard />
-            <PostCard />
           </Content>
           <Sider>
             <RecommendedBlogs />
