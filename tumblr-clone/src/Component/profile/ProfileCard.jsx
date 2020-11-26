@@ -5,7 +5,7 @@ const Profile = styled.div`
   border-radius: 10px;
   width: 250px;
   height: 250px;
-  display: column;
+  display: block;
 `;
 const Background = styled.div`
   background-image: url("https://images.unsplash.com/photo-1594633313385-87fa7086b23c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzN8fGJyaWNrfGVufDB8fDB8&auto=format&fit=crop&w=500&q=60");

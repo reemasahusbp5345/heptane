@@ -4,6 +4,8 @@ import {Link} from "react-router-dom"
 import {PhotoCard} from './Modal/Card'
 import { AppContext } from "../Context/AppContext";
 import { CreatePost } from "../Component/Modal/CreatePost";
+import { CreateCard } from "./profile/CreateCard";
+import { ProfileCard } from "./profile/ProfileCard";
 const CardWrapper = styled.div`
   height: 95px;
   width: 540px;
@@ -23,6 +25,12 @@ const AvatarBox = styled.div`
     height: 70px;
     border-radius: 5px;
     width: 70px;
+  }
+  & .profilecard{
+    display:none;
+  }
+  &  > img:hover .profilecard{
+    display:block;
   }
 `;
 const PostBox = styled.div`
@@ -102,6 +110,10 @@ class HeadCard extends React.Component {
             src="https://assets.tumblr.com/images/default_avatar/sphere_open_64.png"
             alt="avatar"
           />
+          <div className={"profilecard"}>
+
+             <ProfileCard/>
+          </div>
         </AvatarBox>
         <PostBox>
           <Item onClick={this.toggleText}>
