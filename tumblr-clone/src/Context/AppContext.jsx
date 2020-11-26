@@ -24,9 +24,14 @@ export class AppContextProvider extends Component {
     this.checkData = this.checkData.bind(this);
     this.addPhoto = this.addPhoto.bind(this);
     this.handleLike = this.handleLike.bind(this);
+    this.update = this.update.bind(this);
   }
   handleLike() {}
   componentDidMount() {
+    this.update()
+  }
+
+  update(){
     axios.get(`https://tumblr-server.herokuapp.com/posts`).then((res) => {
       this.setState({
         posts: [...res.data],
@@ -65,48 +70,17 @@ export class AppContextProvider extends Component {
         isFollow: false,
         isLike: false,
       })
-      .then((res) => alert("succes"))
+      .then((res) => this.update())
       .catch((err) => alert("err"));
   }
   addPhoto(post, img) {
-    const { currentUser, activeUser } = this.state;
-    // console.log(img)
-    console.log(activeUser.username);
-    // let payload={
-    //       "author_id":currentUser,
-    //       "post_by": activeUser.username,
-    //       "content": img ,
-    //       "postType": "image",
-    //       "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
-    //       "numberOfNotes": 0,
-    //       "hashtags": [
-    //         "#first_post",
-    //         "tumblr"
-    //       ],
-    //      "isFollow":false,
-    //      "isLike":false
-    //   }
-    // axios
-    //   .post(`https://tumblr-server.herokuapp.com/posts`, {
-    //     "author_id":currentUser,
-    //     "post_by":  "",
-    //     "content": img ,
-    //     "postType": "image",
-    //     "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
-    //     "numberOfNotes": 0,
-    //     "hashtags": [
-    //       "#first_post",
-    //       "tumblr"
-    //     ],
-    //    "isFollow":false,
-    //    "isLike":false
-    //   })
-    axios({
-      method: "post",
-      url: "https://tumblr-server.herokuapp.com/posts",
-      data: {
+
+    const { currentUser,activeUser } = this.state;
+    console.log(activeUser.post_by)
+    axios
+      .post(`https://tumblr-server.herokuapp.com/posts`, {
         author_id: currentUser,
-        post_by: activeUser.username,
+        post_by: "reema",
         content: img,
         postType: "image",
         src:
@@ -115,9 +89,8 @@ export class AppContextProvider extends Component {
         hashtags: ["#first_post", "tumblr"],
         isFollow: false,
         isLike: false,
-      },
-    })
-      .then((res) => alert("succes"))
+      })
+      .then((res) => this.update())
       .catch((err) => alert("err"));
   }
   // handling changes inside inputs
@@ -153,9 +126,9 @@ export class AppContextProvider extends Component {
       this.setState({
         currentUser: user.id,
         isAuth: true,
-        activeUser: user,
+        activeUser: user
       });
-      console.log(this.state.activeUser);
+
       history.push("/dashboard");
     } else {
       this.setState({
@@ -220,6 +193,7 @@ export class AppContextProvider extends Component {
       data,
       posts,
       user,
+      activeUser
     } = this.state;
     const {
       handleChange,
@@ -244,6 +218,7 @@ export class AppContextProvider extends Component {
       addPost,
       posts,
       addPhoto,
+      activeUser,
       handleLike,
     };
     return (
