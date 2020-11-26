@@ -1,6 +1,6 @@
 import "./App.css";
 import Routes from "./Component/Routes/Routes";
-// import { TextContentCard } from "./Component/TextContentCard";
+import { TextContentCard } from "./Component/TextContentCard";
 
 function App() {
   return (
