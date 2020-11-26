@@ -23,6 +23,7 @@ export class AppContextProvider extends Component {
     this.saveData = this.saveData.bind(this);
     this.checkData = this.checkData.bind(this);
     this.addPhoto = this.addPhoto.bind(this);
+    // this.toggleFollow = this.toggleFollow.bind(this);
   }
 
   componentDidMount() {
