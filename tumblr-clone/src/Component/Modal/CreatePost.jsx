@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Card } from './Card'
 
 const Modal = styled.div`
     height:100vh;
@@ -8,9 +7,8 @@ const Modal = styled.div`
     position:absolute;
     top:0;
     left:0;
-    background-color:rgba(0,0,0,0.5);
+    background-color:rgba(0, 25, 53,0.8);
     z-index:999;
-    // display:none;
 `
 
 
@@ -22,7 +20,7 @@ export  class CreatePost extends Component {
         const {handleModal} = this.props
         return (
             <Modal >
-                <Card  handleModal={handleModal} />
+                {this.props.children}
             </Modal>
         )
     }
