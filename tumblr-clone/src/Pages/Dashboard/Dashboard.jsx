@@ -17,7 +17,7 @@ const Content = styled.div`
   margin-left: "100px";
 `;
 const Sider = styled.div`
-  flex: 1;
+  flex: 0.7;
   // margin-left: "400px";
 `;
 // const {Sider, Content } = Layout;
