@@ -18,7 +18,7 @@ const CardWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content:space-between;
-`;
+  `;
 const AvatarBox = styled.div`
   margin-top: 10px;
   height: 70px;
@@ -29,16 +29,16 @@ const AvatarBox = styled.div`
     width: 70px;
     border-radius: 5px;
   }
-`;
+  `;
 const PostBox = styled.div`
-  border: 1px solid black;
-  background-color: white;
-  color: black;
-  border-radius: 5px;
-  margin-top: 10px;
-  max-width: 445px;
-  width: 100%;
-  margin: 4px;
+border: 1px solid black;
+background-color: white;
+color: black;
+border-radius: 5px;
+margin-top: 10px;
+max-width: 445px;
+width: 100%;
+margin: 4px;
 `;
 const PostBoxHeader = styled.div`
   /* position: relative;
@@ -65,7 +65,8 @@ const PostBoxHeader = styled.div`
   }
 `;
 const PostBoxContent = styled.div`
-  height: 485px;
+  /* height: 485px; */
+  width:100%;
   display: flex;
   flex-direction: column;
   padding: 5px 5px;
@@ -79,14 +80,19 @@ const PostBoxContent = styled.div`
       font-weight: 600;
     }
   }
+
+  & img {
+    width:100%;
+  }
 `;
 const PostBoxFooter = styled.div`
   position: relative;
   height: 50px;
   width: 415px;
-  bottom: 0px;
+  /* bottom: 0px; */
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   & div {
     margin: 7px;

@@ -80,7 +80,7 @@ export class SignUp extends Component {
         return (
             <div>
                 { !currentUser ? <SignUpWrap>
-                    <HomeNav/>
+                    <HomeNav login={true} signup={false} />
                     <div className="mid">
                         <img src={process.env.PUBLIC_URL + '/tumblr.png'} alt=""/>
                         <p>Come for what you love. {'\n'}

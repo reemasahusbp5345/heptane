@@ -13,8 +13,10 @@
 ```npm install axios```
 * MATERIAL DESIGN ICON
 ```npm install mdi-react```
-* ANT DESISIGN
+* ANT DESIGN
 ```npm install antd```
+* React router
+```npm install react-router-dom```
 
 
 ## FUNTIONALITY ADDED:
@@ -30,16 +32,17 @@
 * Tumblr is an American microblogging and social networking website founded by David Karp in 2007 and currently owned by Automattic. 
 * The service allows users to post multimedia and other content to a short-form blog. 
 * Users can follow other users' blogs.
-  ### SIGNUP PAGE:
-  ![SignUp Page](https://github.com/Iammonis/Heptane/blob/develop/tumblr-clone/ReadmeImages/SignUp.png)
-  This is SignUp Page.
-  ### LOGIN PAGE:
-  ![Login Page](https://github.com/Iammonis/Heptane/blob/develop/tumblr-clone/ReadmeImages/Login.jpg)
-  This is Login Page.
-  ### DASHBOARD PAGE:
-  ![Dashboard Page](https://github.com/Iammonis/Heptane/blob/develop/tumblr-clone/ReadmeImages/Dashboard.png)
-  This is Dashboard Page.
- ### EXPLORE PAGE:
-  ![Explore Page](https://github.com/Iammonis/Heptane/blob/develop/tumblr-clone/ReadmeImages/Explore.png)
-  This is Dashboard Page.
+
+### SIGNUP PAGE:
+![SignUp Page](https://github.com/Iammonis/Heptane/blob/develop/tumblr-clone/ReadmeImages/SignUp.png)
+This is SignUp Page.
+### LOGIN PAGE:
+![Login Page](https://github.com/Iammonis/Heptane/blob/develop/tumblr-clone/ReadmeImages/Login.jpg)
+This is Login Page.
+### DASHBOARD PAGE:
+![Dashboard Page](https://github.com/Iammonis/Heptane/blob/develop/tumblr-clone/ReadmeImages/Dashboard.png)
+This is Dashboard Page.
+### EXPLORE PAGE:
+![Explore Page](https://github.com/Iammonis/Heptane/blob/develop/tumblr-clone/ReadmeImages/Explore.png)
+This is Explore Page.
   
