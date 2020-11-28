@@ -1,5 +1,10 @@
 # PROJECT NAME: Tumblr-Clone
 
+## Our Team:
+* [Reema Sahu](https://github.com/reemasahusbp5345)
+* [Vinay Gupta](https://github.com/vinaytest75)
+* [Monis Khan](https://github.com/Iammonis)
+
 ## TECH STACK USED:
 * HTML
 * CSS
