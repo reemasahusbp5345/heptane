@@ -5,7 +5,8 @@ import {PhotoCard} from './Modal/Card'
 import {TextCard} from './Modal/TextCard'
 import { AppContext } from "../Context/AppContext";
 import { CreatePost } from "../Component/Modal/CreatePost";
-
+import { CreateCard } from "./profile/CreateCard";
+import { ProfileCard } from "./profile/ProfileCard";
 const CardWrapper = styled.div`
   height: 95px;
   width: 540px;
@@ -15,7 +16,6 @@ const CardWrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
 `;
-
 const AvatarBox = styled.div`
   height: 70px;
   width: 70px;
@@ -27,8 +27,13 @@ const AvatarBox = styled.div`
     border-radius: 5px;
     width: 70px;
   }
+  & .profilecard{
+    display:none;
+  }
+  &  > img:hover .profilecard{
+    display:block;
+  }
 `;
-
 const PostBox = styled.div`
   border-radius: 5px;
   background: #f5f5f5;
@@ -44,7 +49,6 @@ const PostBox = styled.div`
     transform: translate(0, -5px);
   }
 `;
-
 const Item = styled.div`
   display: flex;
   flex-direction: column;
@@ -66,7 +70,6 @@ class HeadCard extends React.Component {
     this.togglePhoto=this.togglePhoto.bind(this)
     this.toggleText=this.toggleText.bind(this)
   }
-
   // setModal1Visible(modal1Visible) {
   //   this.setState({ modal1Visible });
   //   const {addPost}=this.context
@@ -108,6 +111,10 @@ class HeadCard extends React.Component {
             src="https://assets.tumblr.com/images/default_avatar/sphere_open_64.png"
             alt="avatar"
           />
+          <div className={"profilecard"}>
+
+             <ProfileCard/>
+          </div>
         </AvatarBox>
         <PostBox>
           <Item onClick={this.toggleText}>
@@ -159,7 +166,6 @@ class HeadCard extends React.Component {
             <p>Video</p>
           </Item>
         </PostBox>
-
         { txtOpen ?
             <CreatePost>
               <TextCard  handleModal={this.toggleText} />
