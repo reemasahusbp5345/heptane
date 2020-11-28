@@ -82,7 +82,8 @@ const PostBoxFooter = styled.div`
   bottom: 0px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   & div {
     margin: 7px;
   }
@@ -96,6 +97,7 @@ class TextContentCard extends React.Component {
     this.state = {
       isFollow: this.props.isFollow,
       isLike: this.props.isLike,
+      notes: Number(this.props.notes)
     };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleLike = this.handleLike.bind(this);
@@ -121,7 +123,7 @@ class TextContentCard extends React.Component {
   render() {
     const { id, postText, username, avatarUrl, title } = this.props;
     const { handleToggle } = this;
-    const { isLike } = this.state;
+    const { isLike, notes } = this.state;
     let postTitle
     if(title){
       postTitle = title
@@ -157,6 +159,7 @@ class TextContentCard extends React.Component {
           </PostBoxContent>
           {/* Card Footer */}
           <PostBoxFooter>
+            <div>{notes} notes</div>
             <div>
               <Icon path={mdiShareVariantOutline} title="share" size={1.5} />
               <Icon path={mdiMessageReply} title="reply" size={1.5} />

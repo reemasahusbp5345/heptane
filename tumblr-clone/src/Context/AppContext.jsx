@@ -63,23 +63,7 @@ export class AppContextProvider extends Component {
 
   addPost(text) {
     const { post, currentUser, activeUser } = this.state;
-
-    // this.setState({
-    //   post: [post, newPost],
-    // });
-    // let payload={
-    //     "author_id":currentUser,
-    //     "post_by": "monis",
-    //     "content": text ,
-    //     "postType": "text",
-    //     "src": "https://64.media.tumblr.com/35388ffef62bc82b7aa77fb8c9b7fa7d/d627679440977fcb-fa/s64x64u_c1/28019b815196325207468906e884ca3cacd02263.pnj",
-    //     "numberOfNotes": 155,
-    //     "hashtags": [
-    //       "#first_post",
-    //       "tumblr"
-    //     ],
-    //     "contentSource": "http://somerandomsource.com"
-    // }
+    
     axios
       .post(`https://tumblr-server.herokuapp.com/posts`, {
         author_id: currentUser,
